@@ -15,7 +15,7 @@
   			<li>Categoria</li>
         <a href="../autenticacao/desconectar.php">sair</a>
   		</ul>
-      <img src="../img/logoFoxtrot-80x58.png" />
+      <img src="../img/logoFoxtrot-110x65.png" />
     </header>
 
     <section>
