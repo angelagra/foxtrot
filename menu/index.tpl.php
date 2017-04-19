@@ -19,7 +19,7 @@
     </header>
 
     <section>
-    		<h1>Bem Vindo Fulano</h1>
+    		<h1>Bem Vindo <?php echo $_SESSION['nomeUsuario']; ?></h1>
     </section>
   </body>
 </html>

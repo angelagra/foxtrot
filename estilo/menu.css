@@ -2,18 +2,16 @@
 header{ /*background-color: #1b2838;*/
   background-color: #008a8a;
 	width: 100%; height: 65px;
-
-	z-index: 99; 	position: fixed;
-	opacity: 0.9;  margin: 0;
+	position: fixed; opacity: 0.9;  margin: 0;
 }
 header > img {
 	position: absolute; margin: 1px 20%;
-	left: -44.5px; float: left; padding: 0px 5px;
+	left: -44.5px; padding: 0px 5px;
 }
 ul {
 	width: 600px; height: auto;
 	position: absolute; margin: 0 50%;
-	left: -300px;
+	left: -300px; cursor: pointer;
 }
 ul > li, a{
 	width: 25%; height: auto;
@@ -25,13 +23,14 @@ ul > li:hover, a:hover{
 	background-color: #f76f00; height: 35px;
 }
 
-
-
 /*------------FIM MENU-----------------*/
-
+section{
+  width: 70%; height: auto; position: absolute;
+  left: -35%; margin: 0px 50%; top: 70px;
+}
 section h1{
 	color: #000000;
 	text-align: center;
-	padding: 150px;
+	padding: 20px 0px;
 
 }
