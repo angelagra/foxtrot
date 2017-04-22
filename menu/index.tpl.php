@@ -13,9 +13,9 @@
   			<li>Usuário</li>
   			<li>Produto</li>
   			<li>Categoria</li>
-        <a href="../autenticacao/desconectar.php">sair</a>
+        <li><a href="../autenticacao/desconectar.php">sair</a></li>
   		</ul>
-      <img src="../img/logoFoxtrot-110x65.png" />
+      <img src="../img/logo-80x58.png" />
     </header>
 
     <section>
