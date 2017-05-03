@@ -14,7 +14,7 @@
 
 body{ /* Declarando parão "default" para navegadores */
   font-family: 'Source Sans Pro', sans-serif;
-  color: white; font-weight: 300; background-color: #ffffff;
+  color: white; font-weight: 300; background-color: #fff;
 
   ::-webkit-input-placeholder { /* WebKit browsers */
     font-family: 'Source Sans Pro', sans-serif;
