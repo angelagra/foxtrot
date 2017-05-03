@@ -30,7 +30,7 @@
 
   <footer class="desenvolvedor color-default">
     <p>Projeto integrador 2 - Centro Universitário Senac Santo Amaro - Tecnologia em Sistemas para Internet</p>
-    <a href="https://www.linkedin.com/in/saulo-sinesio-377850127/" target="_blank">Angela</a>
+    <a href="https://www.linkedin.com/in/angelagra/" target="_blank">Angela</a>
     <a href="https://www.linkedin.com/in/saulo-sinesio-377850127/" target="_blank">Anna</a>
     <a href="https://www.linkedin.com/in/saulo-sinesio-377850127/" target="_blank">Saulo Sinesio</a>
   </footer>
