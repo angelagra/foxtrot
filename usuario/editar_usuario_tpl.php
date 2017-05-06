@@ -1,6 +1,7 @@
 <?php
 	include('../menu/index.head.tpl.php');
 ?>
+
 	<!-- passar o caminha para o estilo do formulário -->
 <?php
 	include('../menu/index.body.tpl.php');
@@ -8,15 +9,32 @@
 	if(isset($msg)) 	echo"<center><font color = 'green'> $msg </font></center>";
 ?>
 
-<form method="post" action="../usuario"><br><br>
-	Nome:<input type = "text" name="nome"
-	value="<?php echo $array_usuario['nomeUsuario']; ?>"><br><br>
+<section>
+      <h1>Editar Usuário</h1>
+  </section>
 
-	E-mail:<input type="email" name="login"
-	value="<?php echo $array_usuario['loginUsuario']; ?>"><br><br>
+<form method="post" action="../usuario" name=form><br><br>
+ <fieldset class="grupo">
+		<div class="campo">
+			<label> Nome:</label>
+			<input type = "text" name="nome" style="width: 17em" 
+			value="<?php echo $array_usuario['nomeUsuario']; ?>"><br><br>
+		</div>
 
-	Senha:<input type="password" name="senha"><br><br>
-	Perfil: <select name="perfil">
+		<div class="campo" class="e-mail">
+			<label>E-mail:</label>
+			<input type="email" name="login" style="width: 17em" 
+			value="<?php echo $array_usuario['loginUsuario']; ?>"><br><br>
+		</div>
+
+		<div class="campo">
+			<label>Senha:</label>
+			<input type="password" name="senha" style="width: 17em"><br><br>
+		</div>
+
+		<div class = "campo">
+			<label>Perfil:</label>
+			<select name="perfil">
 
 				<?php
 				if($array_usuario['tipoPerfil'] == 'A'){
@@ -35,22 +53,29 @@
 					 	  </option>';
 				}
 				?>
-
 			</select><br><br>
+		</div>
 
-	Ativo:
+		<div class="campo">
+			<label>Ativo:</label>
 
-				<?php
-				if($array_usuario['usuarioAtivo'] == 1){
-					echo '<input type="checkbox" name="ativo" checked>';
-				}else{
-					echo '<input type="checkbox" name="ativo">';
-				}
-				?>
-			<input type="hidden" name="id" value="<?php echo $array_usuario['idUsuario']; ?>">
-			<input type="hidden" name="acao" value="editar">
-		<br><br>
-	<input type="submit" value="Gravar" name="btnGravarUsuario">
+						<?php
+						if($array_usuario['usuarioAtivo'] == 1){
+							echo '<input type="checkbox" name="ativo" checked>';
+						}else{
+							echo '<input type="checkbox" name="ativo">';
+						}
+						?>
+					<input type="hidden" name="id" value="<?php echo $array_usuario['idUsuario']; ?>">
+					<input type="hidden" name="acao" value="editar">
+				<br><br><br>
+		</div>
+
+		<div class="campo">
+			<button type="submit" name="btnGravarUsuario">Gravar</button>
+		</div>
+		
+	</fieldset>
 </form>
 
 <?php

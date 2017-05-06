@@ -5,20 +5,45 @@
 <?php
 	include('../menu/index.body.tpl.php');
 ?>
+<section>
+      <h1>Cadastrar Usuário</h1>
+  </section>
 
 <form method="post" action="../usuario/">
-	Nome:   <input type="text" name="nome">
-	E-mail: <input type="email" name="login">
-	Senha:  <input type="password" name="senha">
+	<fieldset class="grupo">
 
-	Perfil:	<select name="perfil">
-						<option value="A"> Administrador </option>
-						<option value="C"> Cliente </option>
-					</select>
+		<div class="campo">
+			<label>Nome:</label>   
+			<input type="text" name="nome" style="width: 17em">
+		</div>
 
-	Ativo: <input type="checkbox" name="ativo" checked>
+		<div class="campo">
+			<label>E-mail:</label>
+			<input type="email" name="login" style="width: 17em">
+		</div>
 
-	<input type="submit" value="Gravar" name="btnNovoUsuario">
+		<div class="campo">
+			<label>Senha:</label>
+			<input type="password" name="senha" style="width: 17em">
+		</div>
+
+		<div class="campo">
+			<label>Perfil:</label>
+			<select name="perfil">
+				<option value="A"> Administrador </option>
+				<option value="C"> Cliente </option>
+			</select>
+		</div>
+
+		<div class="campo">
+			<label>Ativo:</label> 
+			<input type="checkbox" name="ativo" checked>
+		</div>
+
+		<div class="campo">
+			<button type="submit" name="btnNovoUsuario">Gravar</button>
+		</div>
+	</fieldset>
 </form>
 
 <?php

@@ -43,8 +43,7 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 				$usuarios[$i] = $r;
 				$i++;
 			}
-			include('lista_usuario_tpl.php');
-
+			include('lista_usuario_tpl.php'); 
 			break;
 		// -------------------------------------------------------------------------
 		case 'editar':
