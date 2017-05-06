@@ -1,11 +1,12 @@
-/*------------MENU-----------------*/
-header{ /*background-color: #1b2838;*/
+/* Estilo Menu - Padrão Foxtrot --------------------------------------------- */
+/*background-color: #1b2838;*/
+header{
   background-color: #008a8a;
 	width: 100%; height: 65px;
-	position: fixed; opacity: 0.9;  margin: 0;
+	position: fixed;
 }
 header > img {
-	position: absolute; margin: 1px 20%;
+	position: absolute; margin: 5px 20%;
 	left: -44.5px; padding: 0px 5px;
 }
 ul {
@@ -13,24 +14,19 @@ ul {
 	position: absolute; margin: 0 50%;
 	left: -300px; cursor: pointer;
 }
-ul > li, a{
+ul > li{
 	width: 25%; height: auto;
 	text-decoration: none; float: left; color: #fff;
 	list-style: none; text-align: center;
 	padding: 15px 0px; font-size: 20px;
 }
-ul > li:hover, a:hover{
+ul > li:hover{
 	background-color: #f76f00; height: 35px;
 }
 
-/*------------FIM MENU-----------------*/
+/* Estilo Barra de indicação - Indicador de Página -------------------------- */
 section{
   width: 70%; height: auto; position: absolute;
-  left: -35%; margin: 0px 50%; top: 70px;
-}
-section h1{
-	color: #000000;
-	text-align: center;
-	padding: 20px 0px;
-
+  left: -35%; margin: 0px 50%; top: 80px;
+  border-bottom: solid #008a8a; color: #000;
 }

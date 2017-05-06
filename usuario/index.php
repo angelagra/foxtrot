@@ -2,27 +2,29 @@
 include('../db/index.php');
 include('../autenticacao/controleAcesso.php');
 
-if(isset($_REQUEST['acao'])){
-
+if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 	$acao = $_REQUEST['acao'];
 
 	switch($acao){
+		// -------------------------------------------------------------------------
 		case 'incluir':
+			// Cadastrar um novo usuário.
 			include('incluir_usuario_tpl.php');
 			break;
+		// -------------------------------------------------------------------------
 		case 'excluir':
+			// Verificando se o ID enviado é um número
 			if(is_numeric($_GET['id'])){
-				if($q = odbc_exec($db, "	DELETE FROM
-										Usuario
-									WHERE
-										idUsuario = {$_GET['id']}")){
+				if($q = odbc_exec($db, "DELETE FROM Usuario
+																WHERE idUsuario = {$_GET['id']}")){
 					if(odbc_num_rows($q) > 0){
-						$msg = "Usu&aacute;rio exclu&iacute;do com sucesso";
+						// odbc_num_rows() retorna o número de linhas afetadas
+						$msg = "Usuário excluido com sucesso";
 					}else{
-						$erro = "Usu&aacute;rio n&atilde;o existe";
+						$erro = "Usuário não existe";
 					}
 				}else{
-					$erro = "Erro ao excluir o usu&aacute;rio";
+					$erro = "Erro ao excluir o usuário";
 				}
 			}else{
 				$erro = "ID inv&aacute;lido";
@@ -44,7 +46,7 @@ if(isset($_REQUEST['acao'])){
 			include('lista_usuario_tpl.php');
 
 			break;
-
+		// -------------------------------------------------------------------------
 		case 'editar':
 
 			$idUsuario = is_numeric($_REQUEST['id']) ? $_REQUEST['id'] : 'NULL';
