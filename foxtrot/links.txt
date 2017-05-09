@@ -1,5 +1,0 @@
-Efeito Hover em css
- 
-http://ianlunn.github.io/Hover/#effects
-
---------------------------------------------------------------
