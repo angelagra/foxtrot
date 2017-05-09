@@ -5,11 +5,15 @@
 <?php
 	include('../menu/index.body.tpl.php');
 ?>
+
+<link rel="stylesheet" href="../estilo/tabela.css">
+
 <section>
-      <h1>Cadastrar Usuário</h1>
+      <h1>Cadastro de Usuário</h1>
+      <h3><a href="../usuario">Voltar</a></h3>
   </section>
 
-<form method="post" action="../usuario/">
+<form method="post" action="../usuario/"><br><br>
 	<fieldset class="grupo">
 
 		<div class="campo">

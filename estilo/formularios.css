@@ -61,19 +61,20 @@ fieldset.grupo .campo {
 .campo input[type="email"],
 .campo input[type="password"],
 .campo input[type="perfil"],
-.campo select{
+.campo select,
+.campo textarea{
     padding: 0.2em;
     border: 1px solid #CCC;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
     display: block;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .campo select option {
     padding-right: 1em;
 }
  
-.campo input:focus, .campo select:focus{
+.campo input:focus, .campo select:focus, .campo textarea:focus {
     background: #FFC;
 }
 
@@ -90,7 +91,7 @@ button {
     box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
     margin-top: 20px;
-    margin-left: 150%;
+    margin-left: 60%;
 }
  
 button:hover {

@@ -2,6 +2,8 @@
 	include('../menu/index.head.tpl.php');
 ?>
 
+<link rel="stylesheet" href="../estilo/tabela.css">
+
 	<!-- passar o caminha para o estilo do formulário -->
 <?php
 	include('../menu/index.body.tpl.php');
@@ -11,6 +13,7 @@
 
 <section>
       <h1>Editar Usuário</h1>
+      <h3><a href="../usuario">Voltar</a></h3>
   </section>
 
 <form method="post" action="../usuario" name=form><br><br>

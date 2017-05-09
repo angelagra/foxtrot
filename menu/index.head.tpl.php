@@ -5,5 +5,6 @@
     <title>Loja</title>
     <link rel="stylesheet" href="../estilo/menu.css">
     <link rel="stylesheet" href="../estilo/estilo-default.css">
-    <link rel="stylesheet" href="../estilo/formulario-usuario.css">
+    <link rel="stylesheet" href="../estilo/formularios.css">
+
     

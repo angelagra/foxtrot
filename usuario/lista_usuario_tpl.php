@@ -7,42 +7,38 @@
 ?>
   <section>
       <h1>Listagem de Usuário</h1>
+      <h3><a href="?acao=incluir">Adicionar Usuario</a></h3>
   </section>
 
 	<!-- Gerando uma tabela com as informações sobre Usuários do Banco -->
-	<div class="tabela-Categoria">
-			<table>
-				<tr>
-					<td>ID Usuario</td>
-					<td>Login</td>
-					<td>Nome</td>
-					<td>Perfil</td>
-					<td>Ativo</td>
-					<td colspan="2" align="center">
-						<a href="?acao=incluir">
-							<font color="green"> + Novo Usuario </font>
-						</a>
-					</td>
-				</tr>
-				<?php
-				foreach($usuarios as $usuario){
-					echo "<tr>
-									<td>{$usuario['idUsuario']}</td>
-									<td>{$usuario['loginUsuario']}</td>
-									<td>{$usuario['nomeUsuario']}</td>
-									<td>{$usuario['tipoPerfil']}</td>
-									<td>{$usuario['usuarioAtivo']}</td>
-									<td>
-										<a href='?acao=editar&id={$usuario['idUsuario']}'> Editar </a>
-									</td>
-									<td>
-										<a href='?acao=excluir&id={$usuario['idUsuario']}'> Excluir </a>
-									</td>
-								</tr>";
-				} // Fim foreach
-				?>
-			</table>
-		</div> <!-- Fim tabela-Categoria -->
+	<div class="container-table">
+		<div class="table">
+			<div class="row header">
+				<div class="cell-categoria"><p>ID Usuario</p></div>
+				<div class="cell-categoria"><p>Login</p></div>
+				<div class="cell-categoria"><p>Nome</p></div>
+				<div class="cell-categoria"><p>Perfil</p></div>
+				<div class="cell-categoria"><p>Ativo</p></div>
+				<div class="cell-categoria"><p></p></div>
+				<div class="cell-categoria"><p></p></div>
+			</div>
+			<?php
+			foreach($usuarios as $usuario){
+				echo "
+	          <div class='row'>
+	            <div class='cell-categoria'><p>{$usuario['idUsuario']}</p></div>
+	            <div class='cell-categoria'><p>{$usuario['loginUsuario']}</p></div>
+	            <div class='cell-categoria'><p>{$usuario['nomeUsuario']}</p></div>
+	            <div class='cell-categoria'><p>{$usuario['tipoPerfil']}</p></div>
+	            <div class='cell-categoria'><p>{$usuario['usuarioAtivo']}</p></div>
+	            <div class='cell-categoria'><a href='?acao=editar&id={$_SESSION['tipoPerfil']}'>Editar</a></div>
+	            <div class='cell-categoria'><a href='?acao=apagar&id={$_SESSION['tipoPerfil']}'>Apagar</a></div>
+	          </div>
+	         ";
+			} // Fim foreach
+			?>
+		</div> <!-- Fim table -->
+	</div> <!-- Fim container-table -->
 
 <?php
   include ('../menu/index.head.tpl.php');

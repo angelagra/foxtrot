@@ -24,6 +24,10 @@ ul > li:hover{
 	background-color: #f76f00; height: 35px;
 }
 
+li > a{
+  text-decoration: none; color: #fff;
+}
+
 /* Estilo Barra de indicação - Indicador de Página -------------------------- */
 section{
   width: 70%; height: auto; position: absolute;
