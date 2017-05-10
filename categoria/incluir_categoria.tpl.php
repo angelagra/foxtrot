@@ -20,7 +20,7 @@
 
         <div class="campo">
           <label>Descrição:</label>
-          <textarea name="descricao" readonly="readonly" placeholder="Digite um pouco sobre a descrição da categoria" rows="6" style="width: 20em" id="descricao"></textarea>
+          <textarea name="descricao" placeholder="Digite um pouco sobre a descrição da categoria" rows="6" style="width: 20em" id="descricao"></textarea>
         </div>
 
         <div class="campo">

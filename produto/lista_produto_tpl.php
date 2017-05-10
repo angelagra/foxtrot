@@ -1,7 +1,7 @@
 <?php
   include ('../menu/index.head.tpl.php');
 ?>
-  <link rel="stylesheet" href="../estilo/tabela.css">
+  <link rel="stylesheet" href="../estilo/tabela1.css">
 <?php
   include ('../menu/index.body.tpl.php');
 ?>
@@ -40,7 +40,7 @@
                 <td>{$produto['ativoProduto']}</td>
                 <td>{$produto['idUsuario']}</td>
                 <td>{$produto['qtdMinEstoque']}</td>
-                <td><img src='data:image/jpeg;base64,$conteudo_base64'></td>
+                <td><img width='200' src='data:image/jpeg;base64,$conteudo_base64'></td>
                 <td>
                   <a href='?acao=editar&id={$produto['idProduto']}'>Editar</a>
                 </td>

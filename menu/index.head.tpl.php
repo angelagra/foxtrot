@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+     <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-5">
+
     <title>Loja</title>
     <link rel="stylesheet" href="../estilo/menu.css">
     <link rel="stylesheet" href="../estilo/estilo-default.css">

@@ -10,22 +10,7 @@
     switch ($acao) {
       // -----------------------------------------------------------------------
       case 'incluir':
-        $nome=$_POST['nome'];
-        $desc=$_POST['descricao'];
-
-        var_dump($nome); exit;
-
-        if(odbc_exec($db, " INSERT INTO Categoria
-                            (nomeCategoria,
-                            descCategoria)
-                            VALUES
-                            '$nome',
-                            '$desc'
-                          ")){
-          echo "Feito";
-        }else{
-          echo "Erro ao cadastrar categoria";
-        }
+          include('incluir_categoria.tpl.php');
         break;
 
       // -----------------------------------------------------------------------

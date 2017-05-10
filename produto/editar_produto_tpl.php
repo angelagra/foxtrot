@@ -14,9 +14,12 @@
 ?>
 
 <form method="post" action="../produto" id="frm"><br><br>
-	Nome do produto:<input type = "text" name="nomeP"
-	value="<?php echo $array_produto['nomeProduto']; ?>"><br><br>
 
+	<div class="campo">
+		<label>Nome do produto:</label>
+		<input type = "text" name="nomeP" value="<?php echo $array_produto['nomeProduto']; ?>"><br><br>
+	</div>
+	
   Descrição:<input type="text" name="desc"
 	value="<?php echo $array_produto['desc']; ?>"><br><br>
 
