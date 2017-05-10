@@ -3,7 +3,7 @@
 <body>
   <header>
     <ul>
-      <li><a href="../usuario">Usuário</a></li>
+      <li><a href="../usuario">Usuario</a></li>
       <li><a href="../prosutos">Produto</a></li>
       <li><a href="../categoria/">Categoria</a></li>
       <li><a href="../autenticacao/desconectar.php">Sair</a></li>
