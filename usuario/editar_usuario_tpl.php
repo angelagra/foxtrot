@@ -14,9 +14,9 @@
 <section>
       <h1>Editar Usuário</h1>
       <h3><a href="../usuario">Voltar</a></h3>
-  </section>
+ </section>
 
-<form method="post" action="../usuario" name=form><br><br>
+<form method="post" action="../usuario" name="form"><br><br>
  <fieldset class="grupo">
 		<div class="campo">
 			<label> Nome:</label>
