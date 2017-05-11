@@ -50,6 +50,7 @@ a:hover{
   width: 80%;
 }
 
-/* Estilo de cada celula APENAS PARA USUARIOS */
-
-/* Estilo de cada celula APENAS PARA PRODUTOS */
+img {
+  width: 100px; height: 100px; margin: 0 50%;
+  left: -50px;
+}
