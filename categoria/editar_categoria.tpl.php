@@ -2,7 +2,7 @@
   include ('../menu/index.head.tpl.php');
   include ('../menu/index.body.tpl.php');
 ?>
-<link rel="stylesheet" href="../estilo/tabela.css">
+<link rel="stylesheet" href="../estilo/formularios.css">
 
 <section>
     <h1>Editar Categorias</h1>

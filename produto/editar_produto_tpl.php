@@ -27,28 +27,24 @@
 		</div>
 
 		<div class="campo">
-		  <label>Descrição:</label>
-		  <input type="text" name="desc" value="<?php echo $array_produto['descProduto']; ?>"><br><br>
-		</div>
-
-		<div class="campo">
 		  <label>Preço:</label>
-		  <input type="text" name="preco" value="<?php echo $array_produto['prec']; ?>"><br><br>
+		  <input type="text" name="preco" value="<?php echo $array_produto['precProduto']; ?>"><br><br>
 		</div>
 
 		<div class="campo">
 			<label>Quantidade no estoque:</label>
-			<input type="text" name="qntEstoque"><br><br>
+			<input type="text" name="qntEstoque" value="<?php echo $array_produto['qtdMinEstoque']; ?>"><br><br>
 		</div>
 
 		<div class="campo">
 			<label>Desconto:</label>
-			<input type="text" name="desconto" value=" "><br><br>
+			<input type="text" name="desconto" value="<?php echo $array_produto['descontoPromocao']; ?>"><br><br>
 		</div>
+
 
 		<div class="campo">
 	  		<label>Categoria:</label> 
-	  		<select name="cat">
+	  		<select name="cat" value="<?php echo $array_produto['idCategoria']; ?>">
 
 					<?php
 					if($array_produto['idCategoria'] == 'A'){
@@ -123,9 +119,15 @@
 		</div>
 
 		<div class="campo">
+		  <label>Descrição:</label>
+		  <textarea type="text" name="desc" rows="10" style="width: 50em" value="<?php echo $array_produto['descProduto']; ?>" ></textarea><br><br>
+		</div>
+
+		<div class="campo">
 			<label>Inserir imagem:</label> 
-			<input type="file" name="arquivo"><br><br>
+			<input type="file" name="arquivo" value="<?php echo $array_produto['imagem'];?>"><br><br>
 		</div>	
+
 
 		<div class="campo">
 			<button type="submit" name="btnGravarProduto">Gravar</button>

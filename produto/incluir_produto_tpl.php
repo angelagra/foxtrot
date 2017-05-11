@@ -17,17 +17,17 @@
 	<fieldset class="grupo">
 		<div class="campo">
 			<label>Nome:</label>   
-			<input type="text" name="nmProduto"><br><br>
+			<input type="text" name="nomeP"><br><br>
 		</div>
 
 		<div class="campo">
 			<label>Descrição:</label>
-			<input type="text" name="desc"><br><br>
+			<textarea type="text" name="descricao"></textarea><br><br>
 		</div>
 
 		<div class="campo">
 			<label>Preço:</label>
-			<input type="text" name="preco"><br><br>
+			<input type="text" name="prec"><br><br>
 		</div>
 
 		<div class="campo">
@@ -37,7 +37,7 @@
 
 		<div class="campo">
 			<label>Desconto/Promoção:</label>
-		   <input type="text" name="desconto" value=""><br><br>
+		   <input type="text" name="descont" value=""><br><br>
 		</div>
 
 		<div class="campo">
@@ -52,7 +52,7 @@
 
 		<div class="campo">
 			<label>Inserir imagem:</label>						
-		 	<input type="file" name="arquivo"><br><br>
+		 	<input type="file" name="img"><br><br>
 	 	</div>
 
 	 	<div class="campo">
