@@ -11,8 +11,6 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 		case "incluir":
 			// Cadastrar um novo produto.
 
-			include('incluir_produto_tpl.php');
-
 			//Insere um novo produto
 			if(isset($_POST['btnNovoProduto'])){
 				//Pega o nome
@@ -22,13 +20,13 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 				$descricao = $_POST['desc'];
 
 				//Pega e trata o preço
-				$prec = is_numeric($_POST['prec']) ? $_POST['prec'] : header('Location: ../produto/incluir_produto_tpl');
+				$prec = is_numeric($_POST['prec']) ? $_POST['prec'] : header('Location: ../produto/incluir_produto_tpl.php');
 
 				//Pega e trata a quantidade no estoque
-				$quant = is_numeric($_POST['qntEstoque']) ? $_POST['qntEstoque'] : header('Location: ../produto/incluir_produto_tpl');
+				$quant = is_numeric($_POST['qntEstoque']) ? $_POST['qntEstoque'] : header('Location: ../produto/incluir_produto_tpl.php');
 
 				//Pega e trata desconto
-				$descont = is_numeric($_POST['desconto']) ? $_POST['desconto'] : header('Location: ../produto/incluir_produto_tpl');
+				$descont = is_numeric($_POST['desconto']) ? $_POST['desconto'] : header('Location: ../produto/incluir_produto_tpl.php');
 
 				//Pega e trata categoria
 				switch($_POST['cat']) {
@@ -157,21 +155,6 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 
 			if(isset($_POST['btnGravarProduto'])){
 
-				//Pega o nome
-				$nomeP = $_POST['nome'];
-
-				//Pega a descrição
-				$descricao = $_POST['desc'];
-
-				//Pega e trata o preço
-				$prec = is_numeric($_POST['prec']) ? $_POST['prec'] : header('Location: ../produto/incluir_produto_tpl');
-
-				//Pega e trata a quantidade no estoque
-				$quant = is_numeric($_POST['qntEstoque']) ? $_POST['qntEstoque'] : header('Location: ../produto/incluir_produto_tpl');
-
-				//Pega e trata desconto
-				$descont = is_numeric($_POST['desconto']) ? $_POST['desconto'] : header('Location: ../produto/incluir_produto_tpl');
-
 				//Pega e trata categoria
 				switch($_POST['cat']) {
 					case "A":
@@ -222,23 +205,22 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 				}
 			}
 
-			$query_produto
-				= odbc_exec($db, 'SELECT
-									idProduto,
-									nomeProduto,
-								  descProduto,
-								  precProduto,
-									descontoPromocao,
-                  idCategoria,
-                  ativoProduto,
-                  idUsuario,
-                  qtdMinEstoque
-								FROM
-									Produto
-								WHERE
-									idProduto = '.$idProduto);
-			$array_produto
-				= odbc_fetch_array($query_produto);
+			$query_produto = odbc_exec($db, "SELECT
+											idProduto,
+											nomeProduto,
+								 			descProduto,
+											precProduto,
+											descontoPromocao,
+                 							idCategoria,
+                							ativoProduto,
+                							idUsuario,
+                							qtdMinEstoque
+											FROM
+											Produto
+											WHERE
+											idProduto = '$idProduto'");
+
+			$array_produto = odbc_fetch_array($query_produto);
 
 			include('editar_produto_tpl.php');
 

@@ -1,5 +1,9 @@
 <?php
   include ('../menu/index.head.tpl.php');
+  ?>
+<link rel="stylesheet" href="../estilo/formularios.css">
+<?php
+
   include ('../menu/index.body.tpl.php');
 ?>
 
