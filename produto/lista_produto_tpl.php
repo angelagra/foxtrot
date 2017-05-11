@@ -9,50 +9,47 @@
     <h1>Listagem de Produtos</h1>
 </section>
 
-<!-- Gerando uma tabela com as informações sobre produtos do Banco -->
-
-<div class="tabela-Categoria">
-<table>
-<tr>
-  <td>ID Produto</td>
-  <td>Nome</td>
-  <td>Descrição</td>
-  <td>Preço</td>
-  <td>Desconto Promocao</td>
-  <td>Categoria</td>
-  <td>ativoProduto</td>
-  <td>ID Usuario</td>
-  <td>Quantidade no estoque</td>
-  <td>Imagem</td>
-  <td><a href="?acao=incluir">Adicionar Produto</a></td>
-</tr>
+<!-- Gerando uma tabela com as informações sobre Usuários do Banco -->
+<div class="container-table">
+  <div class="table">
+    <div class="row header">
+      <div class="cell"><p>ID</p></div>
+      <div class="cell"><p>Imagem</p></div>
+      <div class="cell"><p>Nome</p></div>
+      <div class="cell"><p>Descrição</p></div>
+      <div class="cell"><p>Preço</p></div>
+      <div class="cell"><p>Promoção</p></div>
+      <div class="cell"><p>Quantidade</p></div>
+      <div class="cell"><p>Categoria</p></div>
+      <div class="cell"><p>Ativo</p></div>
+      <div class="cell"><p>Usuario</p></div>
+      <div class="cell"><p><br><br></p></div>
+    </div>
     <?php
-
     foreach($produtos as $produto){
       $conteudo_base64 = base64_encode($produto['imagem']);
-        echo "<tr>
-                <td>{$produto['idProduto']}</td>
-                <td>{$produto['nomeProduto']}</td>
-                <td>{$produto['descProduto']}</td>
-                <td>{$produto['precProduto']}</td>
-                <td>{$produto['descontoPromocao']}</td>
-                <td>{$produto['idCategoria']}</td>
-                <td>{$produto['ativoProduto']}</td>
-                <td>{$produto['idUsuario']}</td>
-                <td>{$produto['qtdMinEstoque']}</td>
-                <td><img width='200' src='data:image/jpeg;base64,$conteudo_base64'></td>
-                <td>
-                  <a href='?acao=editar&id={$produto['idProduto']}'>Editar</a>
-                </td>
-                <td>
-                  <a href='?acao=excluir&id={$produto['idProduto']}'>Excluir</a>
-                </td>
-              </tr>";
+      echo "
+            <div class='row'>
+            <div class='cell'><p class='position'>{$produto['idProduto']}</p></div>
+              <div class='cell center'><p><img class='imgProduto' src='data:image/jpeg;base64,$conteudo_base64'></p></div>
+              <div class='cell'><p>{$produto['nomeProduto']}</p></div>
+              <div class='cell'><p>{$produto['descProduto']}</p></div>
+              <div class='cell'><p>{$produto['precProduto']}</p></div>
+              <div class='cell'><p>{$produto['descontoPromocao']}</p></div>
+              <div class='cell'><p>{$produto['qtdMinEstoque']}</p></div>
+              <div class='cell'><p>{$produto['idCategoria']}</p></div>
+              <div class='cell'><p>{$produto['ativoProduto']}</p></div>
+              <div class='cell'><p>{$produto['idUsuario']}</p></div>
+              <div class='cell'>
+                <a href='?acao=editar&id={$produto['idProduto']}'>Editar</a><br><br>
+                <a href='?acao=excluir&id={$produto['idProduto']}'>Apagar</a>
+              </div>
+            </div>
+          ";
     } // Fim foreach
     ?>
-  </table>
-  </div>
-</div>
+  </div> <!-- Fim table -->
+</div> <!-- Fim container-table -->
 
 <?php
   include('../menu/index.head.tpl.php');
