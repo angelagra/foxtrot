@@ -1,35 +1,47 @@
 <?php
-  include ('../menu/index.head.tpl.php');
-?>
-  <link rel="stylesheet" href="../estilo/tabela.css">
-<?php
-  include ('../menu/index.body.tpl.php');
-?>
-<section>
-    <h1>Listagem de Categorias</h1>
-</section>
+  include('../db/index.php');
+  include('../autenticacao/controleAcesso.php');
 
-<!-- Gerando uma tabela com as informações sobre Categorias do Banco -->
-<div class="tabela-Categoria">
-  </div>
-  <table>
-    <tr>
-      <td>Categoria</td>
-      <td>Descrição</td>
-      <td>Apagar</td>
-    </tr>
-    <?php
-      // foreach ($categorias as $categoria) {
-      //   echo "<tr>
-      //           <td>{$categoria['nomeCategoria']}</td>
-      //           <td>{$categoria['descCategoria']}</td>
-      //           <td><a href='?acao=apagar&id={$categoria['idCategoria']}'>Apagar Categoria</td>
-      //         </tr>";
-      // } // Fim foreach
-    ?>
-  </table>
-</div>
+  // Esperando ação via GET ou POST do Usuário.
+  if(isset($_REQUEST['acao'])){
+    $acao = $_REQUEST['acao'];
 
-<?php
-  include ('../menu/index.head.tpl.php');
+    // Criando condições para as ações
+    switch ($acao) {
+      // -----------------------------------------------------------------------
+      case 'incluir':
+          include('incluir_categoria.tpl.php');
+        break;
+
+      // -----------------------------------------------------------------------
+      case 'excluir':
+        break;
+
+      // -----------------------------------------------------------------------
+      case 'editar':
+        if('A' == $_SESSION['tipoPerfil']){
+          include('editar_categoria.tpl.php');
+
+        }else{
+          echo "Você não tem permissão para editar esta catagoria";
+        }
+        break;
+
+      // -----------------------------------------------------------------------
+
+      default:
+        break;
+    }
+  }else{ //fim $_REQUEST['acao']
+    // Criando a consulta das Categorias
+    $consulta = odbc_exec($db, "SELECT nomeCategoria, descCategoria, idCategoria
+                                FROM Categoria");
+    $aux = 0;
+    while ($resul = odbc_fetch_array($consulta)){
+      // Passando cada campo de categoria para um array categorias
+      $categorias[$aux] = $resul;
+      $aux++;
+    }
+    include('lista_categoria.tpl.php');
+  }
 ?>

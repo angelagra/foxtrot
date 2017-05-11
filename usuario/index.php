@@ -15,13 +15,13 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 		case 'excluir':
 			// Verificando se o ID enviado é um número
 			if(is_numeric($_GET['id'])){
-				if($q = odbc_exec($db, "DELETE FROM Usuario
-																WHERE idUsuario = {$_GET['id']}")){
+				if($q = odbc_exec($db, "DELETE FROM Usuario WHERE idUsuario = {$_GET['id']}")){
 					if(odbc_num_rows($q) > 0){
 						// odbc_num_rows() retorna o número de linhas afetadas
+						include('msgExcluirUsuario.html');
 						$msg = "Usuário excluido com sucesso";
 					}else{
-						$erro = "Usuário não existe";
+						include("index.php");
 					}
 				}else{
 					$erro = "Erro ao excluir o usuário";
@@ -43,8 +43,7 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 				$usuarios[$i] = $r;
 				$i++;
 			}
-			include('lista_usuario_tpl.php');
-
+			include('lista_usuario_tpl.php'); 
 			break;
 		// -------------------------------------------------------------------------
 		case 'editar':

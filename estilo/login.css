@@ -1,11 +1,18 @@
+*{
+  font-family: 'Bangers', cursive;
+}
+
 .color-default{
   color: #f76f00;
 }
 
 img {
   background-repeat: no-repeat;
-  width: 240px; height: 174px; left: -120px;
-  position: absolute; margin: 20px 50%;
+  left: -120px;
+  top: -20px;
+  position: relative;
+  margin: 20px 50%;
+
 }
 
 /* Estilo da página --------------------------------------------------------- */
@@ -34,7 +41,7 @@ img {
   text-align: center;
 }
 .container > h1{ /* Efeito sobre o h1 -- Apresentação inicial */
-  font-size: 40px;
+  font-size: 45px;
   transition-duration: 1.5s;
   transition-timing-function: ease-in-out;
   font-weight: 200px;
@@ -43,6 +50,7 @@ img {
 /* Tratando estilo do formulario */
 .frm{
   padding: 20px 0; position: relative;
+
 }
 .frm > input{ /* TAG input */
   appearance: none; outline: 0;
