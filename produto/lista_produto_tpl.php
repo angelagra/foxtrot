@@ -7,6 +7,7 @@
 ?>
 <section>
     <h1>Listagem de Produtos</h1>
+    <h3><a href="?acao=incluir">Adicionar Produto</a></h3>
 </section>
 
 <!-- Gerando uma tabela com as informações sobre Usuários do Banco -->
@@ -52,5 +53,5 @@
 </div> <!-- Fim container-table -->
 
 <?php
-  include('../menu/index.head.tpl.php');
+  include('../menu/index.footer.tpl.php');
 ?>

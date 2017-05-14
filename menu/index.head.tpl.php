@@ -6,7 +6,8 @@
     <title>Foxtrot</title>
     <link rel="stylesheet" href="../estilo/menu.css">
     <link rel="stylesheet" href="../estilo/estilo-default.css">
-    <link rel="stylesheet" href="../estilo/formularios.css">
+    
+    
 
     <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
 

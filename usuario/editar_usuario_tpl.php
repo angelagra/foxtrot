@@ -2,7 +2,7 @@
 	include('../menu/index.head.tpl.php');
 ?>
 
-<link rel="stylesheet" href="../estilo/tabela.css">
+<link rel="stylesheet" href="../estilo/formularios.css">
 
 	<!-- passar o caminha para o estilo do formulário -->
 <?php

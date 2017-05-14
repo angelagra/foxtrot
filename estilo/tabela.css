@@ -16,8 +16,8 @@ a:hover{
 
 /* Conteiner Geral da tabela */
 .container-table{
-  width: 70%; height: 300px; position: absolute;
-  left: -35%; margin: 0px 50%; top: 150px;
+  width: 90%; height: 300px; position: absolute;
+  left: -45%; margin: 0px 50%; top: 150px;
 }
 
 /* Estilo da tabela */
@@ -48,9 +48,4 @@ a:hover{
 }
 .cell-categoria:nth-of-type(2){
   width: 80%;
-}
-
-img {
-  width: 100px; height: 100px; margin: 0 50%;
-  left: -50px;
 }

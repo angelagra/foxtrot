@@ -22,7 +22,7 @@
   </head>
 
   <body>
-    <img src="../img/logoFoxtrot-240x175.png" />
+    <img src="../img/logoFoxtrot-240x175.png" /> <!-- Imagem PG Login -->
 
     <div class="wrapper">
 
