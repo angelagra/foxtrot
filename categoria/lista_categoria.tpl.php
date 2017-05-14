@@ -7,7 +7,8 @@
 ?>
 <section>
     <h1>Listagem de Categorias</h1>
-    <h3><a href="?acao=incluir">Adicionar categoria</a></h3>
+    <div class="btn"><h3><a href="?acao=incluir">Adicionar categoria</a></h3></div>
+    <?php if(isset($msgUsuario)) echo '<p class="msgUsuario">'.$msgUsuario.'</p>';?>
 </section>
 
 <!-- Gerando uma tabela com as informações sobre Categorias do Banco -->
@@ -25,8 +26,8 @@
           <div class='row'>
             <div class='cell-categoria'><p>{$categoria['nomeCategoria']}</p></div>
             <div class='cell-categoria'><p>{$categoria['descCategoria']}</p></div>
-            <div class='cell-categoria'><a href='?acao=editar&id={$_SESSION['tipoPerfil']}'>Editar</a></div>
-            <div class='cell-categoria'><a href='?acao=excluir&id={$_SESSION['tipoPerfil']}'>Excluir</a></div>
+            <div class='cell-categoria'><a href='?acao=editar&id={$categoria['idCategoria']}'>Editar</a></div>
+            <div class='cell-categoria'><a href='?acao=excluir&id={$categoria['idCategoria']}'>Excluir</a></div>
           </div>
          ";
        }
