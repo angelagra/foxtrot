@@ -3,8 +3,14 @@
 ?>
 <link rel="stylesheet" href="../estilo/formularios.css">
 <?php
-
 	include('../menu/index.body.tpl.php');
+
+if(isset($erro)){
+	include('../mensagem/msgErro.html');
+}
+if(isset($msg)){
+	include('../mensagem/msgSucesso.html');
+}
 ?>
 
 <section>

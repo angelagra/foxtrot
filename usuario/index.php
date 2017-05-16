@@ -18,10 +18,9 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 				if($q = odbc_exec($db, "DELETE FROM Usuario WHERE idUsuario = {$_GET['id']}")){
 					if(odbc_num_rows($q) > 0){
 						// odbc_num_rows() retorna o número de linhas afetadas
-						include('msgExcluirUsuario.html');
 						$msg = "Usuário excluido com sucesso";
 					}else{
-						include("index.php");
+						$erro = "Usu&aacute;rio n&atilde;o existe";
 					}
 				}else{
 					$erro = "Erro ao excluir o usuário";
