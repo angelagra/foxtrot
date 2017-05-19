@@ -2,135 +2,108 @@
 	include('../menu/index.head.tpl.php');
 ?>
   <link rel="stylesheet" href="../estilo/formularios.css">
-  <!-- passar o caminha para o estilo do formulário -->
 <?php
 	include('../menu/index.body.tpl.php');
-	if(isset($erro)){
-     echo "<center><font color='red'> $erro </font></center>";
-   }
-	if(isset($msg)) {
-    	echo"<center><font color = 'green'> $msg </font></center>";
-    }
 ?>
 
 <section>
       <h1>Editar Produto</h1>
-      <h3><a href="../produto">Voltar</a></h3>
+      <h3><a href="../produto/">Voltar</a></h3>
  </section>
 
-<form method="post" action="../produto" id="frm"><br><br>
-
+<form method="post" action="../produto/" id="frm"><br><br>
 	<fieldset  class="grupo">
 		<div class="campo">
+			<!-- Campo para adicionar o nome do Produto -->
 			<label>Nome do produto:</label>
-			<input type = "text" name="nomeP" value="<?php echo $array_produto['nomeProduto']; ?>"><br><br>
+			<input type="text"
+						 name="inputProduto"
+						 value="<?php echo $array_produto['nomeProduto'];?>">
+						 <br><br>
 		</div>
 
+		<!-- Campo para adicionar o preço do Produto -->
 		<div class="campo">
 		  <label>Preço:</label>
-		  <input type="text" name="preco" value="<?php echo $array_produto['precProduto']; ?>"><br><br>
+		  <input type="text"
+				     name="inputPreco"
+						 value="<?php echo $array_produto['precProduto'];?>">
+						 <br><br>
 		</div>
 
+		<!-- Campo para adicionar a quantidade do Produto -->
 		<div class="campo">
 			<label>Quantidade no estoque:</label>
-			<input type="text" name="qntEstoque" value="<?php echo $array_produto['qtdMinEstoque']; ?>"><br><br>
+			<input type="text"
+				     name="inputEstoque"
+						 value="<?php echo $array_produto['qtdMinEstoque'];?>">
+						 <br><br>
 		</div>
 
+		<!-- Campo para adicionar a desconto do Produto -->
 		<div class="campo">
 			<label>Desconto:</label>
-			<input type="text" name="desconto" value="<?php echo $array_produto['descontoPromocao']; ?>"><br><br>
+			<input type="text"
+				 		 name="inputDesconto"
+						 value="<?php echo $array_produto['descontoPromocao'];?>">
+						 <br><br>
 		</div>
 
-
+		<!-- Campo para adicionar a categoria do Produto -->
 		<div class="campo">
-	  		<label>Categoria:</label> 
-	  		<select name="cat" value="<?php echo $array_produto['idCategoria']; ?>">
-
+	  		<label>Categoria:</label>
+		  		<select name="inputCategoria">
 					<?php
-					if($array_produto['idCategoria'] == 'A'){
-						echo '<option value="A" selected>
-								Categoria 1
-							  </option>
-							  <option value="B">
-							    Categoria 2
-							  </option>;
-	              <option value="C">
-							    Categoria 3
-							  </option>;
-	              <option value="D">
-							    Categiria 4
-							  </option>';
-					} elseif($array_produto['idCategoria'] == 'B') {
-	          echo '<option value="A">
-								Categoria 1
-							  </option>
-							  <option value="B" selected>
-							    Categoria 2
-							  </option>;
-	              <option value="C">
-							    Categoria 3
-							  </option>;
-	              <option value="D">
-							    Categiria 4
-							  </option>';
-					} elseif($array_produto['idCategoria'] == 'C') {
-	          echo '<option value="A">
-								Categoria 1
-							  </option>
-							  <option value="B">
-							    Categoria 2
-							  </option>;
-	              <option value="C" selected>
-							    Categoria 3
-							  </option>;
-	              <option value="D">
-							    Categiria 4
-							  </option>';
-					} elseif($array_produto['idCategoria'] == 'D') {
-	          echo '<option value="A">
-								Categoria 1
-							  </option>
-							  <option value="B" >
-							    Categoria 2
-							  </option>;
-	              <option value="C">
-							    Categoria 3
-							  </option>;
-	              <option value="D" selected>
-							    Categiria 4
-							  </option>';
-					}
+					// Criando a opções das categorias
+					$consulta = odbc_exec($db, "SELECT nomeCategoria,
+																				     idCategoria
+			                                FROM   Categoria");
+
+			    while ($r = odbc_fetch_array($consulta)){
+						echo '<option value="'.$r['idCategoria'].'">'.$r['nomeCategoria'].'</option>';
+			    }
 					?>
 			</select><br><br>
 		</div>
 
+		<!-- Campo para adicionar a ativo do Produto -->
 		<div class="campo">
 			<label>Ativo:</label>
-
 			<?php
-			if($array_produto['ativoProduto'] == 1){
-				echo '<input type="checkbox" name="ativo" checked>';
-			}else{
-				echo '<input type="checkbox" name="ativo">';
-			}
+				if($array_produto['ativoProduto'] == 1)
+					echo '<input type="checkbox" name="inputAtivo" value="'.$array_produto['ativoProduto'].'" checked>';
+				else
+					echo '<input type="checkbox" name="inputAtivo" value="'.$array_produto['ativoProduto'].'">';
 			?>
-			<input type="hidden" name="id" value="<?php echo $array_produto['idProduto']; ?>">
-			<input type="hidden" name="acao" value="editar"><br><br>
 		</div>
 
+		<!-- Campo para adicionar a descrição do Produto -->
 		<div class="campo">
 		  <label>Descrição:</label>
-		  <textarea type="text" name="desc" rows="10" style="width: 50em" value="<?php echo $array_produto['descProduto']; ?>" ></textarea><br><br>
+		  <textarea type="text"
+								name="inputDescricao"
+								rows="10"
+								style="width: 50em"
+								value="<?php echo $array_produto['descProduto'];?>">
+			</textarea><br><br>
 		</div>
 
+		<!-- Campo para adicionar a imagem do Produto -->
 		<div class="campo">
-			<label>Inserir imagem:</label> 
-			<input type="file" name="arquivo" value="<?php echo $array_produto['imagem'];?>"><br><br>
-		</div>	
+			<label>Inserir imagem:</label>
+			<input type="file"
+						 name="inputImagem"
+						 value="<?php echo $array_produto['imagem'];?>">
+						 <br><br>
+		</div>
 
 
 		<div class="campo">
-			<button type="submit" name="btnGravarProduto">Gravar</button>
+			<button type="submit"
+							name="btnGravarProduto"
+							value="<?php echo $array_produto['idProduto'];?>">
+							Atualizar
+			</button>
 		</div>
 	</fieldset>
 </form>

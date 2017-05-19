@@ -21,11 +21,6 @@
 		</div>
 
 		<div class="campo">
-			<label>Descrição:</label>
-			<textarea type="text" name="descricao"></textarea><br><br>
-		</div>
-
-		<div class="campo">
 			<label>Preço:</label>
 			<input type="text" name="prec"><br><br>
 		</div>
@@ -49,6 +44,11 @@
 		        <option value="D"> Categoria 4 </option>
 			</select><br><br>
 		</div>	
+
+		<div class="campo">
+		  <label>Descrição:</label>
+		  <textarea type="text" name="desc" rows="10" style="width: 50em" value="<?php echo $array_produto['descProduto']; ?>" ></textarea><br><br>
+		</div>
 
 		<div class="campo">
 			<label>Inserir imagem:</label>						
