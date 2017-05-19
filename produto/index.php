@@ -1,5 +1,5 @@
 <?php
-set_time_limit(0);
+set_time_limit(0); // Carregar img
 include('../db/index.php');
 include('../autenticacao/controleAcesso.php');
 
@@ -9,9 +9,7 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 	switch($acao){
 		// -------------------------------------------------------------------------
 		case "incluir":
-	
 			include('incluir_produto_tpl.php');
-
 			break;
 		// -------------------------------------------------------------------------
 		case 'excluir':
@@ -55,108 +53,98 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 			break;
 		// -------------------------------------------------------------------------
 		case 'editar':
-
-		//Edita o produto
+			// Verificando id se existe ou não (passando Nulo caso não exista).
 			$idProduto = is_numeric($_REQUEST['id']) ? $_REQUEST['id'] : 'NULL';
-
-			if(isset($_POST['btnGravarProduto'])){
-
-				//trata nome
-				$nomeP = preg_replace(	"/[^a-zA-Z0-9 ]+/",
-								"",
-								$_POST['nomeP']);
-
-
-				//Pega e trata categoria
-				switch($_POST['cat']) {
-					case "A":
-							$categoria = $_POST['A'];
-							break;
-					case "B":
-							$categoria = $_POST['B'];
-							break;
-					case "C":
-							$categoria = $_POST['C'];
-							break;
-					case "D";
-							$categoria = $_POST['D'];
-							break;
-					default:
-						echo "Insira uma categoria";
-						header('Location: ../produto/incluir_produto_tpl.php');
-				}
-
-				//Pega a ativação
-				$_POST['ativo'] =
-				!isset($_POST['ativo']) ? 0 : $_POST['ativo'];
-				$ativ = (bool) $_POST['ativo'];
-				$ativ = $ativ === true ? 1 : 0;
-
-		        //Trata imagem
-		        $conteudo = $_FILE['arquivo'];
-		        $img = base64_decode($conteudo);
-
-				if(odbc_exec($db, "	UPDATE
-										Produto
-									SET
-										idProduto,
-										nomeProduto = '$nomeP',
-										descProduto = '$descricao',
-										precProduto = '$prec',
-										descontoPromocao = '$descont',
-										idCategoria = '$categoria',
-										ativoProduto = '$ativ',
-										idUsuario = '$usuario',
-										qtdMinEstoque = '$quant',
-										imagem = '$img'
-									WHERE
-										idProduto = $idProduto")){
-					$msg = "Produto gravado com sucesso";
-				}else{
-					$erro = "Erro ao gravar o produto";
-				}
-			}
-
+			// Consultado produto escolhida
 			$query_produto = odbc_exec($db, 'SELECT
-											idProduto,
-											nomeProduto,
-								 			descProduto,
-											precProduto,
-											descontoPromocao,
-                 							idCategoria,
-                							ativoProduto,
-                							idUsuario,
-                							qtdMinEstoque
-											FROM
-											Produto
-											WHERE
-											idProduto = '.$idProduto);
+																		 	 idProduto,
+																			 nomeProduto,
+																 			 descProduto,
+																			 precProduto,
+																			 descontoPromocao,
+									               			 idCategoria,
+									              			 ativoProduto,
+									              			 idUsuario,
+									              			 qtdMinEstoque
+																			 FROM
+																			 Produto
+																			 WHERE
+																			 idProduto = '.$idProduto);
 
-			$array_produto = odbc_fetch_array($query_produto);
+				$array_produto = odbc_fetch_array($query_produto);
 
-			include('editar_produto_tpl.php');
+				include('editar_produto_tpl.php');
+				break;
 
-			break;
-
-		default:
-			$erro = "A&ccedil;&atilde;o inv&aacute;lida";
+			default:
+				$erro = "A&ccedil;&atilde;o inv&aacute;lida";
 	}
 
 }else{
 
+	// ATUALIZAR NOVA PRODUTOS -------------------------------------------------
+	// -------------------------------------------------------------------------
+	if(isset($_POST['btnGravarProduto'])){
+		// Tratando informaçõe do formulário para uma vareável
+		$padroes = "/[^a-zA-Z0-9 ]+/";
+		$padroesInteiro = "/[^0-9 .,]+/";
+		$substituicao = "";
+
+		// Tratando categoria e descrição ...
+		$inputProduto		= preg_replace($padroes, $substituicao, $_POST['inputProduto']);
+		$inputPreco 		= preg_replace($padroesInteiro, $substituicao, $_POST['inputPreco']);
+		$inputEstoque 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputEstoque']);
+		$inputDesconto 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputDesconto']);
+		$inputCategoria = preg_replace($padroesInteiro, $substituicao, $_POST['inputCategoria']);
+		$inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
+		$idProduto 			= preg_replace($padroesInteiro, $substituicao, $_POST['btnGravarProduto']);
+
+		// $inputAtivo 		= preg_replace($padroesInteiro, $substituicao, $_POST['inputAtivo']);
+		//Pega a ativação
+		$_POST['inputAtivo'] =
+		!isset($_POST['inputAtivo']) ? 0 : $_POST['inputAtivo'];
+		$inputAtivo = (bool) $_POST['inputAtivo'];
+		$inputAtivo = $inputAtivo === true ? 1 : 0;
+
+		//Trata imagem
+		// $conteudo = $_FILE['arquivo'];
+		// $img = base64_decode($conteudo);
+		// $inputImagem 		= $_POST['inputImagem'];
+
+		// Efetuando atualização na categoria passada via GET.
+		if(odbc_exec($db, "UPDATE Produto
+											 SET
+											 nomeProduto 			= '$inputProduto',
+											 precProduto 			= '$inputPreco',
+											 qtdMinEstoque 		= '$inputEstoque',
+											 descontoPromocao = '$inputDesconto',
+											 idCategoria 			= '$inputCategoria',
+											 ativoProduto 		= '$inputAtivo',
+											 descProduto 			= '$inputDescricao',
+											 imagem 					= '$inputImagem'
+											 WHERE
+											 idProduto = '$idProduto'")){
+			$msgUsuario = "Produto $inputProduto Atualizada com sucesso!";
+		}else{
+			$msgUsuario = "Erro ao gravar atualização do Produto.";
+		}
+	} // Fim da ação btnAtualizar
+
+	// LITAR PRODUTOS ----------------------------------------------------------
+	// -------------------------------------------------------------------------
 	$q = odbc_exec($db, "SELECT
-                        idProduto,
-											  nomeProduto,
-												descProduto,
-												precProduto,
-												descontoPromocao,
-												idCategoria,
-												qtdMinEstoque,
-												ativoProduto,
-                        idUsuario,
-                        imagem
-										FROM
-												Produto");
+                       idProduto,
+											 nomeProduto,
+											 descProduto,
+											 precProduto,
+											 descontoPromocao,
+											 idCategoria,
+											 qtdMinEstoque,
+											 ativoProduto,
+                       idUsuario,
+                       imagem
+										   FROM
+											 Produto");
 	$i = 0;
 	while($r = odbc_fetch_array($q)) {
 		$produtos[$i] = $r;
