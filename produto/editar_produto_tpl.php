@@ -21,7 +21,6 @@
 						 value="<?php echo $array_produto['nomeProduto'];?>">
 						 <br><br>
 		</div>
-
 		<!-- Campo para adicionar o preço do Produto -->
 		<div class="campo">
 		  <label>Preço:</label>
@@ -30,7 +29,6 @@
 						 value="<?php echo $array_produto['precProduto'];?>">
 						 <br><br>
 		</div>
-
 		<!-- Campo para adicionar a quantidade do Produto -->
 		<div class="campo">
 			<label>Quantidade no estoque:</label>
@@ -39,7 +37,6 @@
 						 value="<?php echo $array_produto['qtdMinEstoque'];?>">
 						 <br><br>
 		</div>
-
 		<!-- Campo para adicionar a desconto do Produto -->
 		<div class="campo">
 			<label>Desconto:</label>
@@ -48,7 +45,6 @@
 						 value="<?php echo $array_produto['descontoPromocao'];?>">
 						 <br><br>
 		</div>
-
 		<!-- Campo para adicionar a categoria do Produto -->
 		<div class="campo">
 	  		<label>Categoria:</label>
@@ -65,7 +61,6 @@
 					?>
 			</select><br><br>
 		</div>
-
 		<!-- Campo para adicionar a ativo do Produto -->
 		<div class="campo">
 			<label>Ativo:</label>
@@ -76,7 +71,6 @@
 					echo '<input type="checkbox" name="inputAtivo" value="'.$array_produto['ativoProduto'].'">';
 			?>
 		</div>
-
 		<!-- Campo para adicionar a descrição do Produto -->
 		<div class="campo">
 		  <label>Descrição:</label>
@@ -87,7 +81,6 @@
 								value="<?php echo $array_produto['descProduto'];?>">
 			</textarea><br><br>
 		</div>
-
 		<!-- Campo para adicionar a imagem do Produto -->
 		<div class="campo">
 			<label>Inserir imagem:</label>
@@ -96,8 +89,7 @@
 						 value="<?php echo $array_produto['imagem'];?>">
 						 <br><br>
 		</div>
-
-
+		<!-- Botão para validar os campos acima no banco de dados -->
 		<div class="campo">
 			<button type="submit"
 							name="btnGravarProduto"

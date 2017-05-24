@@ -15,8 +15,7 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 		case 'excluir':
 			// Verificando se o ID enviado é um número
 			if(is_numeric($_GET['id'])){
-				if($q = odbc_exec($db, "DELETE FROM Produto
-																WHERE idProduto = {$_GET['id']}")){
+				if($q = odbc_exec($db, "DELETE FROM Produto WHERE idProduto = {$_GET['id']}")){
 					if(odbc_num_rows($q) > 0){
 						// odbc_num_rows() retorna o número de linhas afetadas
 						$msg = "Produto excluido com sucesso";
@@ -49,7 +48,6 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 				$i++;
 			}
 			include('lista_produto_tpl.php');
-
 			break;
 		// -------------------------------------------------------------------------
 		case 'editar':
@@ -79,10 +77,50 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 			default:
 				$erro = "A&ccedil;&atilde;o inv&aacute;lida";
 	}
-
 }else{
 
-	// ATUALIZAR NOVA PRODUTOS -------------------------------------------------
+	// CADASTRAR NOVO PRODUTOS --------------------------------------------------
+	// --------------------------------------------------------------------------
+	if(isset($_POST['btnNovoProduto'])){
+		// Tratando informaçõe do formulário para uma vareável
+		$padroes = "/[^a-zA-Z0-9 ]+/";
+		$padroesInteiro = "/[^0-9 .,]+/";
+		$substituicao = "";
+		
+		// Tratando inputs para salvar no Banco de Dados...
+		$inputProduto		= preg_replace($padroes, $substituicao, $_POST['inputProduto']);
+		$inputPreco 		= preg_replace($padroesInteiro, $substituicao, $_POST['inputPreco']);
+		$inputEstoque 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputEstoque']);
+		$inputDesconto 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputDesconto']);
+		$inputCategoria = preg_replace($padroesInteiro, $substituicao, $_POST['inputCategoria']);
+		$inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
+		$inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativação
+		// ** FALTA TRATAR O INPUT DA IMAGEM
+
+		// Efetuando cadastro da NOVO PRODUTO ----------------------------
+		if(odbc_exec($db, "INSERT INTO Produto
+											 (nomeProduto,
+											 	precProduto,
+										 		qtdMinEstoque,
+									 			descontoPromocao,
+												idCategoria,
+												descProduto,
+												ativoProduto)
+											 VALUES
+											 ('$inputProduto',
+											  '$inputPreco',
+												'$inputEstoque',
+												'$inputDesconto',
+												'$inputCategoria',
+												'$inputDescricao',
+												'$inputAtivo')")){
+			$msgUsuario = "$inputProduto foi cadastrado com sucesso.";
+		}else{
+			$msgUsuario = "Erro ao tentar cadastrar novo produto.";
+		}
+	}
+
+	// ATUALIZAR NOVO PRODUTOS -------------------------------------------------
 	// -------------------------------------------------------------------------
 	if(isset($_POST['btnGravarProduto'])){
 		// Tratando informaçõe do formulário para uma vareável
@@ -90,7 +128,7 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 		$padroesInteiro = "/[^0-9 .,]+/";
 		$substituicao = "";
 
-		// Tratando categoria e descrição ...
+		// Tratando inputs para salvar no Banco de Dados...
 		$inputProduto		= preg_replace($padroes, $substituicao, $_POST['inputProduto']);
 		$inputPreco 		= preg_replace($padroesInteiro, $substituicao, $_POST['inputPreco']);
 		$inputEstoque 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputEstoque']);
@@ -98,16 +136,10 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 		$inputCategoria = preg_replace($padroesInteiro, $substituicao, $_POST['inputCategoria']);
 		$inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
 		$idProduto 			= preg_replace($padroesInteiro, $substituicao, $_POST['btnGravarProduto']);
-
-		// $inputAtivo 		= preg_replace($padroesInteiro, $substituicao, $_POST['inputAtivo']);
-		//Pega a ativação
-		$_POST['inputAtivo'] =
-		!isset($_POST['inputAtivo']) ? 0 : $_POST['inputAtivo'];
-		$inputAtivo = (bool) $_POST['inputAtivo'];
-		$inputAtivo = $inputAtivo === true ? 1 : 0;
+		$inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativação
 
 		//Trata imagem
-		// $conteudo = $_FILE['arquivo'];
+		$conteudo = $_FILE['arquivo'];
 		// $img = base64_decode($conteudo);
 		// $inputImagem 		= $_POST['inputImagem'];
 
@@ -130,8 +162,8 @@ if(isset($_REQUEST['acao'])){ // Esperando qualquer ação via GET ou POST
 		}
 	} // Fim da ação btnAtualizar
 
-	// LITAR PRODUTOS ----------------------------------------------------------
-	// -------------------------------------------------------------------------
+	// LISTAR PRODUTOS ----------------------------------------------------------
+	// --------------------------------------------------------------------------
 	$q = odbc_exec($db, "SELECT
                        idProduto,
 											 nomeProduto,
