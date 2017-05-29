@@ -1,0 +1,33 @@
+/* Variáveis padrões da página ---------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+:root{
+  --color-orange:  #f76f00;
+  --color-orange-rbg-opacity1: rgba(247,117,10,0.1);
+  --color-orange-rbg-opacity3: rgba(247,117,10,0.3);
+  --color-green:   #008a8a;
+  --color-green-rbg-opacity1: rgba(0,138,138,0.1);
+  --color-green-rbg-opacity3: rgba(0,138,138,0.3);
+  --color-bg-body: #fbfbef;
+}
+
+/* Definições padrões para todo o site -------------------------------------- */
+/* -------------------------------------------------------------------------- */
+*{
+  border: 0; margin: 0; padding: 0; font-weight: 300; /* peso da fonte */
+}
+html, body{
+  /*
+    Definimos o height como 100% para que o browser mantenha a altura máxima
+    de acordo com o tamanho do monitor.
+  */
+  height: 100%; width: auto; outline:none !important;
+  background-color: var(-color-bg-body);
+  font-family: 'Crimson Text', serif;
+}
+h1,h2{
+  color: var(--color-green) !important; font-weight: 300px;
+}
+h5{
+  color: var(--color-orange) !important;
+  font-weight: 300px; font-size: 16px;
+}

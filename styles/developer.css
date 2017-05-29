@@ -1,0 +1,51 @@
+.box-all{
+  width: 100%; padding-top: 30px;
+  min-height: 100%; position: relative;
+  margin: 0% 50%; left: -50%;
+}
+
+span.name-grup{
+  color: var(--color-orange);
+}
+.developer-group{
+  width: 100%; padding-top: 30px;
+  min-height: 100%; position: relative;
+  margin: 0% 50%; left: -45%;
+}
+.angela,
+.anna,
+.saulo{
+  float: left; width: 30%; margin: 0px 3px;
+  text-align: center; border: 2px solid var(--color-orange);
+}
+.angela:hover,
+.anna:hover,
+.saulo:hover{
+  border: 2px solid var(--color-green);
+}
+.contact,
+.icons{
+  width: 100%;
+}
+.contact img{
+  width: 30px; height: 30px;
+}
+.icons img{
+  width: 50px; height: 50px;
+  padding: 20px 5px;
+}
+p.text-contat{
+  color: var(--color-orange);
+  height: 30px; padding: 2px 2px; font-size: 20px;
+  /*text-align: left;*/
+}
+
+.logo-center{
+  width: 90%; height: auto; padding: 5px 5px;
+  min-height: 100%; position: relative;
+  margin: 0% 50%; left: -30%;
+}
+
+.logo-center img{
+  width: 240px; height: 175px; padding: 50px 100px;
+}
