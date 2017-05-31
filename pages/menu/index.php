@@ -2,7 +2,7 @@
   include ('../../dataBase/authentication/access.php');
   include ('../default-page/index.head.php');
 ?>
-<?php include ('../default-page/index.body.php'); ?>
+<?php include ('../default-page/index.body.menu.php'); ?>
 
 <section class="page-information page-submenu">
     <h1>Bem Vindo <?php echo $_SESSION['nomeUsuario']; ?></h1>
