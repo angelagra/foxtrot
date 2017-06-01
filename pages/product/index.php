@@ -66,17 +66,11 @@ if(isset($_REQUEST['acao'])){
   		$inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
   		$inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativação
       // Tratando a Imagem.
-      if(empty($_FILES['inputImagem']['tmp_name'])){
-        $conteudo = NULL;
-      }else{
-        $inputImagem = $_FILES['inputImagem']['tmp_name'];
-    		$imagem = fopen($inputImagem, "r");
-    		$conteudo = fread($imagem, filesize($inputImagem));
-    }
-
-
-    
-  		// Efetuando cadastro da NOVO PRODUTO ----------------------------
+      $inputImagem = $_FILES['inputImagem']['tmp_name'];
+      $imagem = fopen($inputImagem, "rb");
+      $conteudo = fread($imagem, filesize($inputImagem));
+      
+           		// Efetuando cadastro da NOVO PRODUTO ----------------------------
   		$sql =  "INSERT INTO Produto
                                 (nomeProduto,
                                  precProduto,
@@ -89,8 +83,9 @@ if(isset($_REQUEST['acao'])){
                                 VALUES
                                  (?,?,?,?,?,?,?,?)";
       $prepare = odbc_prepare($db, $sql);
-      $parametro = array($inputProduto, $inputPreco, $inputCategoria, $inputAtivo, $inputEstoque,$inputDesconto, $inputDescricao, $conteudo);
-    
+      $parametro = array($inputProduto, $inputPreco, $inputCategoria, $inputAtivo, $inputEstoque,
+        $inputDesconto, $inputDescricao, $conteudo);
+ 
 
       if($resposta = odbc_execute($prepare, $parametro)){ 
         $msgUsuario = "Produto foi cadastrado com sucesso.";
@@ -141,9 +136,9 @@ if(isset($_REQUEST['acao'])){
     $resut = odbc_execute($stmt,array($inputProduto, $inputPreco, $inputEstoque, $inputDesconto, $inputCategoria,$inputAtivo, $inputDescricao, $conteudo, $idProduto));
 
       if(isset($resut)) 
-        $msgUsuario = "Produto foi cadastrado com sucesso.";
+        $msgUsuario = "Produto foi atualizado com sucesso.";
       else 
-        $msgUsuario = "Erro ao tentar cadastrar novo produto.";
+        $msgUsuario = "Erro ao tentar atualizar novo produto.";
 
 
     fclose($imagem);

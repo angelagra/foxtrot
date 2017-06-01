@@ -65,8 +65,10 @@
 .cell-product:nth-of-type(11){
   width: 17%;
 }
-.img-product{
+img.img-product{
   height: 80px; width: 80px;
+  left: 0; right: 0; top: 0; bottom: 0;
+  margin: auto; background: transparent;
   max-width: 100%; max-height: 100%;
 }
 
