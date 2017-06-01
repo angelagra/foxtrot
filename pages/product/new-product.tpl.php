@@ -16,7 +16,7 @@
  </section>
 
 <!-- FORMULÁRIOS PARA CADASTRAR NOVO PRODUTO -->
-<form method="post" action="../product/" id="frm">
+<form method="post" action="../product/" id="frm" enctype="multipart/form-data">
 	<div class="form-box">
     <div class="form-box-1">
       <!-- Campo para adicionar o nome do Produto -->
@@ -70,7 +70,7 @@
       <!-- Campo para adicionar a imagem do Produto -->
       <div class="campo">
         <label for="inputImagem" class="label-box inputFile">Adicionar Imagem</label>
-        <input type="file" id="inputImagem" name="inputImagem" value="">
+        <input type="file" id="inputImagem" name="inputImagem" value="NULL">
         <span id='inputImagem'></span>
         <!-- <input type="file" name="inputImagem"> -->
       </div>
