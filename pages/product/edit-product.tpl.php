@@ -16,7 +16,7 @@
  </section>
 
 <!-- FORMULÁRIOS PARA CADASTRAR NOVO PRODUTO -->
-<form method="post" action="../product/" id="frm">
+<form method="post" action="../product/" id="frm" enctype="multipart/form-data">
 	<div class="form-box">
     <div class="form-box-1">
       <!-- Campo para adicionar o nome do Produto -->
@@ -76,10 +76,13 @@
       <div class="campo">
         <label for="inputImagem" class="label-box inputFile">Adicionar Imagem</label>
         <?php
-          $conteudo_base64 = base64_encode($array_produto['imagem']); 
+        ini_set ('odbc.defaultlrl', 9000000);
+
+        $imagem = $array_produto['imagem'];
+        $conteudo_base64 = base64_encode($array_produto['imagem']);
         ?>
         <img width="80" height="80" <?php echo "src='data:image/jpeg;base64,$conteudo_base64'"?>>
-        <input type="file" id="inputImagem" name="inputImagem">
+        <input type="file" id="inputImagem" name="inputImagem" value="<?php echo  $conteudo_base64;?>">
         <span id='inputImagem'></span>
       </div>
       <!-- Botão para validar os campos acima no banco de dados -->
@@ -91,3 +94,4 @@
 </form>
 
 <?php include ('../default-page/index.footer.php'); ?>
+
