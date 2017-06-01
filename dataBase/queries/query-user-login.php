@@ -3,7 +3,7 @@
 $query = odbc_exec($db, "SELECT nomeUsuario, idUsuario, tipoPerfil
                          FROM  Usuario
                          WHERE loginUsuario = '$email'
-                         AND   senhaUsuario = '$senha'");
+                         AND   senhaUsuario =  HASHBYTES('SHA1','$senha')");
 
  // Utilizando a hash --> HASHBYTES('SHA1','$senha')
  // odbc_exec "Executa uma instrução desejada para efetuarmos uma tarefa ou mais."
