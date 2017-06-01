@@ -66,7 +66,7 @@
       <div class="cell-product"><p>Nome</p></div>
       <div class="cell-product"><p>Descrição</p></div>
       <div class="cell-product"><p>Preço</p></div>
-      <div class="cell-product"><p>Promção</p></div>
+      <div class="cell-product"><p>Promoção</p></div>
       <div class="cell-product"><p>Quantidade</p></div>
       <div class="cell-product"><p>Categoria</p></div>
       <div class="cell-product"><p>Situação</p></div>
@@ -82,7 +82,7 @@
       echo "
             <div class='row'>
             <div class='cell-product'><p class='position'>{$produto['idProduto']}</p></div>
-              <div class='cell-product center'><p><img class='img-product' src='data:image/jpeg;base64,$conteudo_base64'></p></div>
+              <div class='cell-product'><p><img class='img-product' src='data:image/jpeg;base64,$conteudo_base64'></p></div>
               <div class='cell-product'><p>{$produto['nomeProduto']}</p></div>
               <div class='cell-product'><p>{$produto['descProduto']}</p></div>
               <div class='cell-product'><p>{$produto['precProduto']}</p></div>

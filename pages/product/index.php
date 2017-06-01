@@ -70,13 +70,14 @@ if(isset($_REQUEST['acao'])){
         $conteudo = NULL;
       }else{
         $inputImagem = $_FILES['inputImagem']['tmp_name'];
-    		$imagem = fopen($inputImagem, "rb");
+    		$imagem = fopen($inputImagem, "r");
     		$conteudo = fread($imagem, filesize($inputImagem));
     }
-      
+
+
     
   		// Efetuando cadastro da NOVO PRODUTO ----------------------------
-  		$stmt = odbc_prepare($db, "INSERT INTO Produto
+  		$sql =  "INSERT INTO Produto
                                 (nomeProduto,
                                  precProduto,
                                  idCategoria,
@@ -86,19 +87,17 @@ if(isset($_REQUEST['acao'])){
                                  descProduto,
                                  imagem)
                                 VALUES
-                                 (?,?,?,?,?,?,?,?)");
-
-      $resut = odbc_execute($stmt,array($inputProduto, $inputPreco, $inputCategoria, $inputAtivo, $inputEstoque,$inputDesconto, $inputDescricao, $conteudo));
+                                 (?,?,?,?,?,?,?,?)";
+      $prepare = odbc_prepare($db, $sql);
+      $parametro = array($inputProduto, $inputPreco, $inputCategoria, $inputAtivo, $inputEstoque,$inputDesconto, $inputDescricao, $conteudo);
     
 
-      if(isset($resut)) 
+      if($resposta = odbc_execute($prepare, $parametro)){ 
         $msgUsuario = "Produto foi cadastrado com sucesso.";
-      else 
+      }else 
         $msgUsuario = "Erro ao tentar cadastrar novo produto.";
-
-
-      fclose($imagem);
-    } // Fim da ação btnAtualizar
+    
+    } // Fim da ação btnNovoProduto
 
   // ATUALIZAR NOVO PRODUTOS -------------------------------------------------
 	// -------------------------------------------------------------------------
