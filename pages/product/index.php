@@ -70,11 +70,13 @@ if(isset($_REQUEST['acao'])){
         $conteudo = NULL;
       }else{
         $inputImagem = $_FILES['inputImagem']['tmp_name'];
-    		$imagem = fopen($inputImagem, "r");
+    		$imagem = fopen($inputImagem, "rb");
     		$conteudo = fread($imagem, filesize($inputImagem));
-      }
+    }
+      
+    
   		// Efetuando cadastro da NOVO PRODUTO ----------------------------
-  		$stmt = odbc_prepare($db,"INSERT INTO Produto
+  		$stmt = odbc_prepare($db, "INSERT INTO Produto
                                 (nomeProduto,
                                  precProduto,
                                  idCategoria,
@@ -85,13 +87,18 @@ if(isset($_REQUEST['acao'])){
                                  imagem)
                                 VALUES
                                  (?,?,?,?,?,?,?,?)");
-  		$result = odbc_execute($stmt, array( $inputProduto, $inputPreco, $inputCategoria, $inputAtivo, $inputEstoque, $inputDesconto, $inputDescricao, $conteudo));
 
-  		if(!odbc_errormsg($db)) $msgUsuario = "Produto foi cadastrado com sucesso.";
-  		else $msgUsuario = "Erro ao tentar cadastrar novo produto.";
+      $resut = odbc_execute($stmt,array($inputProduto, $inputPreco, $inputCategoria, $inputAtivo, $inputEstoque,$inputDesconto, $inputDescricao, $conteudo));
+    
 
-      if(isset($imagem)) fclose($imagem);
-  	} // Fim da ação btnNovoProduto
+      if(isset($resut)) 
+        $msgUsuario = "Produto foi cadastrado com sucesso.";
+      else 
+        $msgUsuario = "Erro ao tentar cadastrar novo produto.";
+
+
+      fclose($imagem);
+    } // Fim da ação btnAtualizar
 
   // ATUALIZAR NOVO PRODUTOS -------------------------------------------------
 	// -------------------------------------------------------------------------
@@ -115,7 +122,7 @@ if(isset($_REQUEST['acao'])){
       $conteudo = NULL;
     }else{
       $inputImagem = $_FILES['inputImagem']['tmp_name'];
-      $imagem = fopen($inputImagem, "r");
+      $imagem = fopen($inputImagem, "rb");
       $conteudo = fread($imagem, filesize($inputImagem));
     }
     $stmt  = odbc_prepare($db, "UPDATE
@@ -134,10 +141,13 @@ if(isset($_REQUEST['acao'])){
 
     $resut = odbc_execute($stmt,array($inputProduto, $inputPreco, $inputEstoque, $inputDesconto, $inputCategoria,$inputAtivo, $inputDescricao, $conteudo, $idProduto));
 
-    if(!odbc_errormsg($db)) $msgUsuario = "Produto foi editado com sucesso.";
-    else $msgUsuario = "Erro ao tentar editar novo produto.";
+      if(isset($resut)) 
+        $msgUsuario = "Produto foi cadastrado com sucesso.";
+      else 
+        $msgUsuario = "Erro ao tentar cadastrar novo produto.";
 
-    if(isset($imagem)) fclose($imagem);
+
+    fclose($imagem);
 	} // Fim da ação btnAtualizar
 
   if(isset($_POST['btn-search'])){
@@ -153,21 +163,29 @@ if(isset($_REQUEST['acao'])){
                                      U.nomeUsuario,
                                      P.qtdMinEstoque,
                                      P.imagem
-                              FROM Produto AS P
-                                LEFT OUTER JOIN Categoria AS C
-                                ON P.idCategoria = C.idCategoria
-                                LEFT OUTER JOIN Usuario AS U
-                                ON P.idUsuario = U.idUsuario
-                              WHERE nomeProduto LIKE '$search'");
+                                    FROM Produto AS P
+                                      LEFT OUTER JOIN Categoria AS C
+                                      ON P.idCategoria = C.idCategoria
+                                      LEFT OUTER JOIN Usuario AS U
+                                      ON P.idUsuario = U.idUsuario
+                                    WHERE nomeProduto LIKE '$search'");
 
-    $counter = 0;
-    while ($result = odbc_fetch_array($searchConsulta)) {
-      // Passando cada campo do array uma categorias.
-      $produtos[$counter] = $result;
-      $counter++;
+    if(!$searchConsulta){
+      $counter = 0;
+      while ($result = odbc_fetch_array($searchConsulta)) {
+        // Passando cada campo do array uma categorias.
+        $produtos[$counter] = $result;
+        $counter++;
+      }
+      include('list-product.tpl.php');
+      exit;
+    }else{
+     // Listando os produtos na página.
+     include('../../dataBase/queries/query-full-product.php');
+     include('list-product.tpl.php');
+     exit;
     }
-    include('list-product.tpl.php');
-    exit;
+
   } /* -- btn-search -- */
 
   if(isset($_POST['btn-filter'])){
@@ -213,14 +231,22 @@ if(isset($_REQUEST['acao'])){
                                   ON P.idUsuario = U.idUsuario
                                 WHERE P.ativoProduto LIKE '$filterAtivo'");
     }
-    $counter = 0;
-    while ($result = odbc_fetch_array($searchConsulta)) {
-      // Passando cada campo do array uma categorias.
-      $produtos[$counter] = $result;
-      $counter++;
+
+    if(!$searchConsulta){
+      $counter = 0;
+      while ($result = odbc_fetch_array($searchConsulta)) {
+        // Passando cada campo do array uma categorias.
+        $produtos[$counter] = $result;
+        $counter++;
+      }
+      include('list-product.tpl.php');
+      exit;
+    }else{
+       // Listando os produtos na página.
+       include('../../dataBase/queries/query-full-product.php');
+       include('list-product.tpl.php');
+       exit;
     }
-    include('list-product.tpl.php');
-    exit;
   } /* -- btn-search -- */
 
   // Listando os produtos na página.
