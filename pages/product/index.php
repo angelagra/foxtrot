@@ -181,6 +181,7 @@ if(isset($_REQUEST['acao'])){
       exit;
     }else{
      // Listando os produtos na página.
+    $msgUsuario = "Nenhum produto encontrado !";
      include('../../dataBase/queries/query-full-product.php');
      include('list-product.tpl.php');
      exit;
@@ -243,6 +244,7 @@ if(isset($_REQUEST['acao'])){
       exit;
     }else{
        // Listando os produtos na página.
+      $msgUsuario = "Nenhum produto encontrado !";
        include('../../dataBase/queries/query-full-product.php');
        include('list-product.tpl.php');
        exit;
