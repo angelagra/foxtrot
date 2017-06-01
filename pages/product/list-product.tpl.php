@@ -15,7 +15,7 @@
   </div>
 
   <!-- Filtrar a listagem por categoria e/ou produtos ativos -->
-  <form action="../product/" method="POST">
+  <form action="../product/" method="POST" enctype="multipart/form-data">
   <div class="box-select">
     <span class="select">
       <select name="filter-category">
