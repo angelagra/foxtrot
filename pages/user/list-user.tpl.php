@@ -23,7 +23,7 @@
 <div class="container-table">
 	<div class="table">
 		<div class="row">
-			<div class="cell-user"><p>ID Usuario</p></div>
+			<div class="cell-user"><p>ID</p></div>
 			<div class="cell-user"><p>Nome</p></div>
 			<div class="cell-user"><p>Login</p></div>
 			<div class="cell-user"><p>Perfil</p></div>

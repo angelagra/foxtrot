@@ -76,10 +76,9 @@
       <div class="campo">
         <label for="inputImagem" class="label-box inputFile">Adicionar Imagem</label>
         <?php
-        ini_set ('odbc.defaultlrl', 9000000);
 
-        $imagem = $array_produto['imagem'];
-        $conteudo_base64 = base64_encode($array_produto['imagem']);
+          $imagem = $array_produto['imagem'];
+          $conteudo_base64 = base64_encode($array_produto['imagem']);
         ?>
         <img width="80" height="80" <?php echo "src='data:image/jpeg;base64,$conteudo_base64'"?>>
         <input type="file" id="inputImagem" name="inputImagem" value="<?php echo  $conteudo_base64;?>">
