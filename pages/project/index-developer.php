@@ -8,7 +8,7 @@ include ('../default-page/index.head.php');
 <!-- FORMULÁRIOS PARA O SUBMENU -->
 <section class="page-information page-submenu">
     <h1>Desenvolvedores</h1>
-    <h2>Informações adicionais do grupo <span class="name-grup">"Error 404"</span>.</h2>
+    <h2>Informa&ccedil;&otilde;es adicionais do grupo <span class="name-grup">"Error 404"</span>.</h2>
 </section>
 
 <div class="box-all">
@@ -33,7 +33,7 @@ include ('../default-page/index.head.php');
       </div>
       <div class="icons">
         <a href="https://www.facebook.com/anna.barbara.jesus" target="_blank"><img src="../../images/icon/facebook.png"></a>
-        <a href="https://www.facebook.com/anna.barbara.jesus" target="_blank"><img src="../../images/icon/linkedin.png"></a>
+        <a href="https://www.linkedin.com/in/anna-barbara-jesus-fragoso-9389b610b/" target="_blank"><img src="../../images/icon/linkedin.png"></a>
       </div>
     </div>
 

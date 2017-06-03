@@ -4,10 +4,10 @@
 
 <!-- FORMULÁRIOS PARA O SUBMENU -->
 <section class="page-information page-submenu">
-  <h1>Listagem de Usuário</h1>
+  <h1>Listagem de Usu&aacute;rio</h1>
   <div class="box-btn">
     <button type="button" name="btn-add" class="btn-add">
-      <h3><a class="btn-link" href="?acao=incluir">Adicionar Usuário</a></h3>
+      <h3><a class="btn-link" href="?acao=incluir">Adicionar Usu&aacute;rio</a></h3>
     </button>
   </div>
 </section>
@@ -27,8 +27,8 @@
 			<div class="cell-user"><p>Nome</p></div>
 			<div class="cell-user"><p>Login</p></div>
 			<div class="cell-user"><p>Perfil</p></div>
-			<div class="cell-user"><p>Situação</p></div>
-			<div class="cell-user"><p>Ações</p></div>
+			<div class="cell-user"><p>Situa&ccedil;&atilde;o</p></div>
+			<div class="cell-user"><p>A&ccedil;&otilde;es</p></div>
 		</div>
 		<?php
 		foreach($usuarios as $usuario){
@@ -36,12 +36,12 @@
       else $usuarioAtivo = "Desativado";
 
       if($usuario['tipoPerfil'] == "A") $tipoPerfil = "Administrador";
-      elseif($usuario['tipoPerfil'] == "C") $tipoPerfil = "Usuário";
+      elseif($usuario['tipoPerfil'] == "C") $tipoPerfil = "Usu&aacute;rio";
       else $tipoPerfil = "Sem Perfil";
 			echo "
           <div class='row'>
             <div class='cell-user'><p>{$usuario['idUsuario']}</p></div>
-            <div class='cell-user'><p>{$usuario['nomeUsuario']}</p></div>
+            <div class='cell-user'><p>".utf8_decode($usuario['nomeUsuario'])."</p></div>
             <div class='cell-user'><p>{$usuario['loginUsuario']}</p></div>
             <div class='cell-user'><p>{$tipoPerfil}</p></div>
             <div class='cell-user'><p>{$usuarioAtivo}</p></div>

@@ -34,20 +34,20 @@
       // MENSAGEM PADRÃO -------------------------------------------------------
       // -----------------------------------------------------------------------
       default:
-        $msgUsuario = "A ação escolhida não é válida!";
+        $msgUsuario = "A a&ccedil;&atilde;o escolhida n&atilde;o &eacute; v&aacute;lida!";
         include('../../dataBase/queries/query-full-user.php');
         include('list-user.tpl.php');
     } /* -- FIM DO SWITCH -- */
   }else{
     // Tratando informaçõe do formulário para uma vareável
-    $padroes = "/[^a-zA-Z0-9 .]+/";
+    $padroes = "/[^a-zA-Z0-9^.]+/";
     $padraoSenha = "/[\"\';#]+/";
     $substituicao = "";
 
     // CADASTRAR NOVO USUÁRIO --------------------------------------------------
     // -------------------------------------------------------------------------
   	if(isset($_POST['btnNovoUsuario'])){
-      $inputNome      = preg_replace($padroes, $substituicao, $_POST['inputNome']);
+      $inputNome      = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputNome']))));
       $inputSenha     = preg_replace($padraoSenha, $substituicao, $_POST['inputSenha']);
       $inputPerfil    = $_POST['inputPerfil'] != 'A' && $_POST['inputPerfil'] != 'C' ? 'C' :	$_POST['inputPerfil'];
       $inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativação
@@ -63,15 +63,15 @@
   							         VALUES
   								      ('$inputLogin', HASHBYTES('SHA1','$inputSenha'),
   								       '$inputNome', '$inputPerfil', $inputAtivo)")){
-  			$msgUsuario = "Usuário $inputNome cadastrado com sucesso!";
+  			$msgUsuario = "Usu&aacute;rio ".utf8_encode($inputNome)." cadastrado com sucesso!";
   		}else{
-  			$msgUsuario = "Erro ao cadastrar usuário!";
+  			$msgUsuario = "Erro ao cadastrar usu&aacute;rio!";
   		}
   	}
     // ATUALIZAR USUÁRIO -------------------------------------------------------
     // -------------------------------------------------------------------------
     if(isset($_POST['btnGravarUsuario'])){
-      $inputNome      = preg_replace($padroes, $substituicao, $_POST['inputNome']);
+      $inputNome      = utf8_encode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputNome']))));
       $inputSenha     = preg_replace($padraoSenha, $substituicao, $_POST['inputSenha']);
       $inputPerfil    = $_POST['inputPerfil'] != 'A' && $_POST['inputPerfil'] != 'C' ? 'C' :	$_POST['inputPerfil'];
       $inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativação
@@ -90,9 +90,9 @@
                                  tipoPerfil   = '$inputPerfil',
                                  usuarioAtivo = $inputAtivo
                           WHERE  idUsuario    = $idUsuario")){
-        $msgUsuario = "Usuário $inputNome editado com sucesso!";
+        $msgUsuario = "Usu&aacute;rio ".utf8_decode($inputNome)." editado com sucesso!";
       }else{
-          $erro = "Erro ao gravar atualização da usuário!";
+          $erro = "Erro ao gravar atualiza&ccedil;&atilde;o da usu&aacute;rio!";
         }
       }
 

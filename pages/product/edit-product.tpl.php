@@ -31,11 +31,11 @@
       <!-- Campo para adicionar o nome do Produto -->
       <div class="campo">
         <label class="label-box">Nome:</label>
-        <input type="text" name="inputProduto" value="<?php echo $array_produto['nomeProduto'];?>">
+        <input type="text" name="inputProduto" value="<?php echo utf8_encode($array_produto['nomeProduto']);?>">
       </div>
       <!-- Campo para adicionar o preço do Produto -->
       <div class="campo">
-        <label class="label-box">Preço:</label>
+        <label class="label-box">Pre&ccedil;o:</label>
         <input type="text" name="inputPreco" value="<?php echo $array_produto['precProduto'];?>">
       </div>
       <!-- Campo para adicionar a desconto do Produto -->
@@ -53,8 +53,8 @@
     <div class="form-box-2">
       <!-- Campo para adicionar a descrição do Produto -->
   		<div class="campo">
-  		  <label class="label-box">Descrição:</label>
-  		  <textarea type="text" name="inputDescricao" rows="10" style="width: 100%"><?php echo $array_produto['descProduto'];?></textarea>
+  		  <label class="label-box">Descri&ccedil;&atilde;o:</label>
+  		  <textarea type="text" name="inputDescricao" rows="10" style="width: 100%"><?php echo utf8_encode($array_produto['descProduto']);?></textarea>
   		</div>
     </div> <!-- fim div form-box-2 -->
 
@@ -67,7 +67,7 @@
           // Criando a opções das categorias
           $consulta = odbc_exec($db, "SELECT nomeCategoria, idCategoria FROM Categoria");
           while ($r = odbc_fetch_array($consulta))
-          echo '<option value="'.$r['idCategoria'].'">'.$r['nomeCategoria'].'</option>';
+          echo '<option value="'.$r['idCategoria'].'">'.utf8_encode($r['nomeCategoria']).'</option>';
           ?>
         </select>
       </div>

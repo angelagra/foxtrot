@@ -5,12 +5,12 @@
 <!-- FORMULÁRIOS PARA O SUBMENU -->
 <section class="page-submenu page-information">
   <div class="box-info">
-    <h1>Adicionar Usuário</h1>
+    <h1>Adicionar Usu&aacute;rio</h1>
   </div>
   <!-- Adicionar novo Produto -->
   <div class="box-btn">
     <button type="button" name="btn-add" class="btn-add">
-      <h3><a class="btn-link" href="../user/">Voltar aos usuários</a></h3>
+      <h3><a class="btn-link" href="../user/">Voltar aos usu&aacute;rios</a></h3>
     </button>
   </div>
  </section>

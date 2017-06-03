@@ -25,8 +25,8 @@
     </div>
     <!-- Campo para adicionar uma breve descrição da categoria -->
     <div class="campo">
-      <label class="label-box">Descrição:</label>
-      <textarea name="inputDescricao" rows="10" style="width: 30%" placeholder="Digite uma breve descrição sobre a categoria (100 Caracteres)"></textarea>
+      <label class="label-box">Descri&ccedil;&atilde;o:</label>
+      <textarea name="inputDescricao" rows="10" style="width: 30%" placeholder="Digite uma breve descri&ccedil;&atilde;o sobre a categoria (100 Caracteres)"></textarea>
     </div>
     <!-- Botão para validar os campos acima no banco de dados -->
     <div class="campo">

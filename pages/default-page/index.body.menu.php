@@ -11,7 +11,7 @@
         <li class="logo-foxtrot">
           <a href="../../dataBase/connect/disconnect.php">Sair</a>
           <br>
-          <p><?php echo $_SESSION['nomeUsuario']; ?><p>
+          <p><?php echo utf8_encode($_SESSION['nomeUsuario']); ?><p>
         </li>
       </ul>
     </header>

@@ -36,7 +36,7 @@
       // MENSAGEM PADRÃO -------------------------------------------------------
       // -----------------------------------------------------------------------
       default:
-        $msgUsuario = "A ação escolhida não é válida!";
+        $msgUsuario = "A a&ccedil;&atilde;o escolhida n&atilde;o &eacute; v&aacute;lida!";
         include('../../dataBase/queries/query-full-category.php');
         include('list-category.tpl.php');
     } /* -- FIM DO SWITCH -- */
@@ -49,8 +49,8 @@
     // -------------------------------------------------------------------------
     if(isset($_POST['bntSalvar'])){
       // Tratando categoria e descrição ...
-      $inputCategoria = preg_replace($padroes, $substituicao, $_POST['inputCategoria']);
-      $inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
+      $inputCategoria = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputCategoria']))));
+      $inputDescricao = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputDescricao']))));
 
       // Efetuando cadastro da NOVA CATEGORIA ----------------------------
       if(odbc_exec($db, "INSERT INTO Categoria
@@ -59,7 +59,7 @@
                         VALUES
                         ('$inputCategoria',
                          '$inputDescricao')")){
-        $msgUsuario = "A categoria $inputCategoria foi cadastrada com sucesso.";
+        $msgUsuario = "A categoria ".utf8_encode($inputCategoria)." foi cadastrada com sucesso.";
       }else{
         $msgUsuario = "Erro ao cadastar uma nova categoria.";
       }
@@ -69,8 +69,8 @@
     // -------------------------------------------------------------------------
     if(isset($_POST['btnAtualizar'])){
       // Tratando categoria e descrição ...
-      $inputCategoria = preg_replace($padroes, $substituicao, $_POST['inputCategoria']);
-      $inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
+      $inputCategoria = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputCategoria']))));
+      $inputDescricao = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputDescricao']))));
       $idCategoria    = preg_replace($padroes, $substituicao, $_POST['btnAtualizar']);
 
       // Efetuando atualização na categoria passada via GET.
@@ -80,9 +80,9 @@
                          descCategoria = '$inputDescricao'
                          WHERE
                          idCategoria = '$idCategoria'")){
-        $msgUsuario = "Categoria $inputCategoria atualizada com sucesso!";
+        $msgUsuario = "Categoria ".utf8_encode($inputCategoria)." atualizada com sucesso!";
       }else{
-        $msgUsuario = "Erro ao gravar atualização da categoria.";
+        $msgUsuario = "Erro ao gravar atualiza&ccedil;&atilde;o da categoria.";
       }
     } // Fim da ação btnAtualizar
 

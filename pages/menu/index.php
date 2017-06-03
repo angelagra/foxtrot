@@ -28,7 +28,7 @@
 <div class="box-user">
   <a href="../user/">
     <div class="box-effect box-effect">
-      <p class="link-page link-right">USUÁRIOS</p>
+      <p class="link-page link-right">USU&Aacute;RIOS</p>
     </div>
   </a>
 </div>

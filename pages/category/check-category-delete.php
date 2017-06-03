@@ -1,7 +1,7 @@
 <?php
   $id = $_GET['id'];
   $done = false;
-  $msgUsuario = "ERRO - Categoria não existe!";
+  $msgUsuario = "ERRO - Categoria n&atilde;o existe!";
 
   // Verificando se existe o produto a ser EXCLUIDO.
   $consulta = odbc_exec($db, "SELECT idCategoria FROM Categoria");
@@ -17,7 +17,7 @@
      $check = odbc_exec($db, 'SELECT idCategoria FROM Produto WHERE idCategoria = '.$id);
      while ($result = odbc_fetch_array($check)){
        if($result['idCategoria'] == $id){
-         $msgUsuario = "Não foi possível excluir a categoria, pois existem produtos relacionados a categoria!";
+         $msgUsuario = "N&atilde;o foi poss&iacute;vel excluir a categoria, pois existem produtos relacionados a categoria!";
          $done = false;
          break;
        }
@@ -29,9 +29,9 @@
     $done = false;
     if($consulta = odbc_exec($db, "DELETE FROM Categoria WHERE idCategoria = {$id}")){
       if(odbc_num_rows($consulta) > 0)
-        $msgUsuario = "Categoria excluido com sucesso!";
+        $msgUsuario = "Categoria excluida com sucesso!";
       else
-        $msgUsuario = "ERRO - Categoria não existe!";
+        $msgUsuario = "ERRO - Categoria n&atilde;o existe!";
     }else{
       $msgUsuario = "Erro ao excluir categoria!";
     }

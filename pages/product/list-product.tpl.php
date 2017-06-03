@@ -64,14 +64,14 @@
       <div class="cell-product"><p>ID</p></div>
       <div class="cell-product"><p>Imagem</p></div>
       <div class="cell-product"><p>Nome</p></div>
-      <div class="cell-product"><p>Descrição</p></div>
-      <div class="cell-product"><p>Preço</p></div>
-      <div class="cell-product"><p>Promoção</p></div>
+      <div class="cell-product"><p>Descri&ccedil;&atilde;o</p></div>
+      <div class="cell-product"><p>Pre&ccedil;o</p></div>
+      <div class="cell-product"><p>Promo&ccedil;&atilde;o</p></div>
       <div class="cell-product"><p>Quantidade</p></div>
       <div class="cell-product"><p>Categoria</p></div>
-      <div class="cell-product"><p>Situação</p></div>
-      <div class="cell-product"><p>Usuário</p></div>
-      <div class="cell-product"><p>Ações</p></div>
+      <div class="cell-product"><p>Situa&ccedil;&atilde;o</p></div>
+      <div class="cell-product"><p>Usu&aacute;rio</p></div>
+      <div class="cell-product"><p>A&ccedil;&otilde;es</p></div>
     </div>
     <?php
     foreach($produtos as $produto){
@@ -83,12 +83,12 @@
             <div class='row'>
             <div class='cell-product'><p class='position'>{$produto['idProduto']}</p></div>
               <div class='cell-product'><p><img class='img-product' src='data:image/jpeg;base64,$conteudo_base64'></p></div>
-              <div class='cell-product'><p>{$produto['nomeProduto']}</p></div>
-              <div class='cell-product'><p>{$produto['descProduto']}</p></div>
+              <div class='cell-product'><p>".utf8_encode($produto['nomeProduto'])."</p></div>
+              <div class='cell-product'><p>".utf8_encode($produto['descProduto'])."</p></div>
               <div class='cell-product'><p>{$produto['precProduto']}</p></div>
               <div class='cell-product'><p>{$produto['descontoPromocao']}</p></div>
               <div class='cell-product'><p>{$produto['qtdMinEstoque']}</p></div>
-              <div class='cell-product'><p>{$produto['nomeCategoria']}</p></div>
+              <div class='cell-product'><p>".utf8_encode($produto['nomeCategoria'])."</p></div>
               <div class='cell-product'><p>{$produtoAtivo}</p></div>
               <div class='cell-product'><p>{$produto['nomeUsuario']}</p></div>
               <div class='cell-product'>
@@ -99,8 +99,7 @@
                   <img alt='excluir' src='../../images/icon/excluir.png'/>
                 </a>
               </div>
-            </div>
-          ";
+            </div>";
     } // Fim foreach
     ?>
   </div> <!-- Fim table -->

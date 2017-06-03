@@ -26,14 +26,14 @@
   <div class="table">
     <div class="row">
       <div class="cell-category"><p> Categorias </p></div>
-      <div class="cell-category"><p> Descrições </p></div>
-      <div class="cell-category"><p> Ações </p></div>
+      <div class="cell-category"><p> Descri&ccedil;&otilde;es </p></div>
+      <div class="cell-category"><p> A&ccedil;&otilde;es </p></div>
     </div>
   <?php
   foreach ($categorias as $categoria) {
     echo "<div class='row'>
-            <div class='cell-category'><p>{$categoria['nomeCategoria']}</p></div>
-            <div class='cell-category'><p>{$categoria['descCategoria']}</p></div>
+            <div class='cell-category'><p>".utf8_encode($categoria['nomeCategoria'])."</p></div>
+            <div class='cell-category'><p>".utf8_encode($categoria['descCategoria'])."</p></div>
             <div class='cell-category'>
               <a href='?acao=editar&id={$categoria['idCategoria']}'>
                 <img src='../../images/icon/editar.png'/>

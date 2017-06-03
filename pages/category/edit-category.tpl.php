@@ -22,12 +22,12 @@
     <!-- Campo para adicionar o nome da Categoria -->
     <div class="campo">
       <label class="label-box">Categoria:</label>
-      <input type="text" name="inputCategoria" value="<?php echo $arryCategoria['nomeCategoria'];?>">
+      <input type="text" name="inputCategoria" value="<?php echo utf8_encode($arryCategoria['nomeCategoria']);?>">
     </div>
     <!-- Campo para adicionar uma breve descrição da categoria -->
     <div class="campo">
-      <label class="label-box">Descrição:</label>
-      <textarea type="text" name="inputDescricao" rows="10" style="width: 30%" value="<?php echo $arryCategoria['descCategoria'];?>"></textarea>
+      <label class="label-box">Descri&ccedil;&atilde;o:</label>
+      <textarea type="text" name="inputDescricao" rows="10" style="width: 30%" value="<?php echo utf8_encode($arryCategoria['descCategoria']);?>"></textarea>
     </div>
     <!-- Botão para validar os campos acima no banco de dados -->
     <!--

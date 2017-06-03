@@ -11,7 +11,7 @@
         break;
       }else{
         $done = false;
-        $msgUsuario = "ERRO - Usuário não existe!";
+        $msgUsuario = "ERRO - Usu&aacute;rio n&atilde;o existe!";
       }
     }
 
@@ -20,15 +20,15 @@
       $done = false;
       if($consulta = odbc_exec($db, "DELETE FROM Usuario WHERE idUsuario = {$id}")){
         if(odbc_num_rows($consulta) > 0)
-          $msgUsuario = "Usuário excluido com sucesso!";
+          $msgUsuario = "Usu&aacute;rio excluido com sucesso!";
         else
-          $msgUsuario = "ERRO - Usuário não existe!";
+          $msgUsuario = "ERRO - Usu&aacute;rio n&atilde;o existe!";
       }else{
-        $msgUsuario = "ERRO - ao excluir usuário!";
+        $msgUsuario = "ERRO - ao excluir usu&aacute;rio!";
       }
     }
   }else{
-    $msgUsuario = "ERRO - Você não possui permição para excluir um Usuário!";
+    $msgUsuario = "ERRO - Voc&ecirc; n&atilde;o possui permis&atilde;o para excluir um Usu&aacute;rio!";
   }
 
   include('../../dataBase/queries/query-full-user.php');

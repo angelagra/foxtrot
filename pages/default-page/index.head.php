@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="iso-8859-1">
+    <meta charset="utf-8">
     <title>Foxtrot</title>
     <link rel="stylesheet" href="../../styles/default.css">
     <link rel="stylesheet" href="../../styles/menu.css">

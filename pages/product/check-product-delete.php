@@ -1,7 +1,7 @@
 <?php
   $id = $_GET['id'];
   $done = false;
-  $msgUsuario = "ERRO - Produto não existe!";
+  $msgUsuario = "ERRO - Produto n&atilde;o existe!";
 
   // Verificando se existe o produto a ser EXCLUIDO.
   $consulta = odbc_exec($db, "SELECT idProduto FROM Produto");
@@ -17,7 +17,7 @@
      $check = odbc_exec($db, 'SELECT idProduto FROM ItemPedido WHERE idProduto = '.$id);
      while ($result = odbc_fetch_array($check)){
        if($result['idCategoria'] == $id){
-         $msgUsuario = "Não foi possível excluir o produto, pois existem pedidos relacionados ao produto!";
+         $msgUsuario = "N&atilde;o foi poss&iacute;vel excluir o produto, pois existem pedidos relacionados ao produto!";
          $done = false;
          break;
        }
@@ -32,7 +32,7 @@
       if(odbc_num_rows($consulta) > 0)
       $msgUsuario = "Produto excluido com sucesso!";
       else
-      $msgUsuario = "ERRO - Produto não existe!";
+      $msgUsuario = "ERRO - Produto n&atilde;o existe!";
     }else{
       $msgUsuario = "Erro ao excluir produto!";
     }

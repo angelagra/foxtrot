@@ -1,21 +1,21 @@
 <?php
-// Muda configuração do PHP para trabalhar com imagens no DB
+// Muda configura?o do PHP para trabalhar com imagens no DB
 ini_set ('odbc.defaultlrl', 9000000);
 set_time_limit(0); // Carregar IMG
 
-// Verificação de acesso do usuário!
+// Verifica?o de acesso do usu?io!
 include('../../dataBase/authentication/access.php');
 include('../../dataBase/connect/index.php');
 
-// Esperando ação via GET ou POST do Usuário.
+// Esperando a?o via GET ou POST do Usu?io.
 if(isset($_REQUEST['acao'])){
   $acao = $_REQUEST['acao'];
-  // Criando condições para as ações
+  // Criando condi?es para as a?es
   switch ($acao) {
     // INCLUIR NOVO PRODUTO --------------------------------------------------
     // -----------------------------------------------------------------------
     case 'incluir':
-      $msgUsuario = "Atenção! Todos os campos devem ser preenchidos";
+      $msgUsuario = "Aten&ccedil;&atilde;o! Todos os campos devem ser preenchidos";
       include('new-product.tpl.php');
       break;
     // APAGAR CATEGORIA ------------------------------------------------------
@@ -26,8 +26,8 @@ if(isset($_REQUEST['acao'])){
     // EDITAR CATEGORIA ------------------------------------------------------
     // -----------------------------------------------------------------------
     case 'editar':
-      $msgUsuario = "Atenção! Todos os campos devem ser preenchidos";
-      // Verificando id se existe ou não (passando Nulo caso não exista).
+      $msgUsuario = "Aten&ccedil;&atilde;o! Todos os campos devem ser preenchidos";
+      // Verificando id se existe ou n? (passando Nulo caso n? exista).
       $idProduto = is_numeric($_REQUEST['id']) ? $_REQUEST['id'] : 'NULL';
       // Consultado produto escolhida
       $query_produto = odbc_exec($db, 'SELECT
@@ -43,10 +43,10 @@ if(isset($_REQUEST['acao'])){
 
         include('edit-product.tpl.php');
         break;
-    // MENSAGEM PADRÃO -------------------------------------------------------
+    // MENSAGEM PADR? -------------------------------------------------------
     // -----------------------------------------------------------------------
     default:
-      $msgUsuario = "A ação escolhida não é válida!";
+      $msgUsuario = "A a&ccedil;&atilde;o escolhida n&atilde;o &eacute; v&aacute;lida!";
       include('../../dataBase/queries/query-full-product.php');
       include('list-product.tpl.php');
   } /* -- FIM DO SWITCH -- */
@@ -62,18 +62,18 @@ if(isset($_REQUEST['acao'])){
        $_POST['inputCategoria'] != NULL && 
        $_POST['inputDescricao'] != NULL && 
        $_FILES['inputImagem'] != NULL){
-      // Tratando informaçõe do formulário para uma vareável
+      // Tratando informa?e do formul?io para uma vare?el
       $padroes = "/[^a-zA-Z0-9 ]+/";
       $padroesInteiro = "/[^0-9.,]+/";
       $substituicao = "";
       // Tratando inputs para salvar no Banco de Dados...
-      $inputProduto   = preg_replace($padroes, $substituicao, $_POST['inputProduto']);
+      $inputProduto   = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputProduto']))));
       $inputPreco     = preg_replace($padroesInteiro, $substituicao, $_POST['inputPreco']);
       $inputEstoque   = preg_replace($padroesInteiro, $substituicao, $_POST['inputEstoque']);
       $inputDesconto  = preg_replace($padroesInteiro, $substituicao, $_POST['inputDesconto']);
-      $inputCategoria = preg_replace($padroesInteiro, $substituicao, $_POST['inputCategoria']);
-      $inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
-      $inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativação
+      $inputCategoria = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputCategoria']))));
+      $inputDescricao = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputDescricao']))));
+      $inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativa?o
       // Tratando a Imagem.
       $inputImagem = $_FILES['inputImagem']['tmp_name'];
       $imagem = fopen($inputImagem, "rb");
@@ -107,7 +107,7 @@ if(isset($_REQUEST['acao'])){
         include('new-product.tpl.php');
         exit;
       }    
-    } // Fim da ação btnNovoProduto
+    } // Fim da a?o btnNovoProduto
 
   // ATUALIZAR NOVO PRODUTOS -------------------------------------------------
 	// -------------------------------------------------------------------------
@@ -118,20 +118,20 @@ if(isset($_REQUEST['acao'])){
        $_POST['inputDesconto'] != NULL && 
        $_POST['inputCategoria'] != NULL && 
        $_POST['inputDescricao'] != NULL){
-  		// Tratando informaçõe do formulário para uma vareável
+  		// Tratando informa?e do formul?io para uma vare?el
   		$padroes = "/[^a-zA-Z0-9 ]+/";
   		$padroesInteiro = "/[^0-9.,]+/";
   		$substituicao = "";
 
   		// Tratando inputs para salvar no Banco de Dados...
-  		$inputProduto		= preg_replace($padroes, $substituicao, $_POST['inputProduto']);
+  		$inputProduto		= utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputProduto']))));
   		$inputPreco 		= preg_replace($padroesInteiro, $substituicao, $_POST['inputPreco']);
   		$inputEstoque 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputEstoque']);
   		$inputDesconto 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputDesconto']);
-  		$inputCategoria = preg_replace($padroesInteiro, $substituicao, $_POST['inputCategoria']);
-  		$inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
+  		$inputCategoria = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputCategoria']))));
+  		$inputDescricao = utf8_decode(str_replace(';', '', str_replace("'", '', str_replace('"', '', $_POST['inputDescricao']))));
   		$idProduto 			= preg_replace($padroesInteiro, $substituicao, $_POST['btnGravarProduto']);
-  		$inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; // Pega a ativação
+  		$inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; // Pega a ativa?o
       // Tratando a Imagem.
       if(empty($_FILES['inputImagem']['tmp_name'])){
         $query_produto = odbc_exec($db, 'SELECT imagem
@@ -186,7 +186,7 @@ if(isset($_REQUEST['acao'])){
       include('edit-product.tpl.php');
       exit;
     } 
-	} // Fim da ação btnAtualizar
+	} // Fim da a?o btnAtualizar
 
 
   // PROCURAR PRODUTOS -------------------------------------------------------
@@ -223,7 +223,7 @@ if(isset($_REQUEST['acao'])){
         include('list-product.tpl.php');
         exit;
       }else{
-        // Listando os produtos na página.
+        // Listando os produtos na p?ina.
         $msgUsuario = "Nenhum produto encontrado !";
         include('../../dataBase/queries/query-full-product.php');
         include('list-product.tpl.php');
@@ -291,7 +291,7 @@ if(isset($_REQUEST['acao'])){
         include('list-product.tpl.php');
         exit;
       }else{
-        // Listando os produtos na página.
+        // Listando os produtos na p?ina.
       $msgUsuario = "Nenhum produto encontrado !";
        include('../../dataBase/queries/query-full-product.php');
        include('list-product.tpl.php');
@@ -300,7 +300,7 @@ if(isset($_REQUEST['acao'])){
     }
   } /* -- btn-filter -- */
 
-  // Listando os produtos na página.
+  // Listando os produtos na p?ina.
   include('../../dataBase/queries/query-full-product.php');
   include('list-product.tpl.php');
 }
