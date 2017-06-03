@@ -5,10 +5,10 @@ include ('../default-page/index.head.php');
 <link rel="stylesheet" href="../../styles/developer.css">
 <?php include ('../default-page/index.body.php'); ?>
 
-<!-- FORMULÃRIOS PARA O SUBMENU -->
+<!-- FORMULÁRIOS PARA O SUBMENU -->
 <section class="page-information page-submenu">
     <h1>Desenvolvedores</h1>
-    <h2>InformaÃ§Ãµes adicionais do grupo <span class="name-grup">"Error 404"</span>.</h2>
+    <h2>Informações adicionais do grupo <span class="name-grup">"Error 404"</span>.</h2>
 </section>
 
 <div class="box-all">

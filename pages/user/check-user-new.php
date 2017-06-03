@@ -3,7 +3,7 @@
     $done = true;
   }else{
     $done = false;
-    $msgUsuario = "ERRO - VocÃª nÃ£o possui permiÃ§Ã£o para adicionar um UsuÃ¡rio!";
+    $msgUsuario = "ERRO - Você não possui permição para adicionar um Usuário!";
   }
 
   if($done == true){

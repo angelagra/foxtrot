@@ -6,9 +6,9 @@ $query = odbc_exec($db, "SELECT nomeUsuario, idUsuario, tipoPerfil
                          AND   senhaUsuario =  HASHBYTES('SHA1','$senha')");
 
  // Utilizando a hash --> HASHBYTES('SHA1','$senha')
- // odbc_exec "Executa uma instruÃ§Ã£o desejada para efetuarmos uma tarefa ou mais."
- // SELECT InstruÃ§Ã£o do SQL Server para selecional tabelas.
+ // odbc_exec "Executa uma instrução desejada para efetuarmos uma tarefa ou mais."
+ // SELECT Instrução do SQL Server para selecional tabelas.
  // FROM "passar o nome da Tabela"
- // WHERE "passar os valores que estÃ£o na tabela"
- // AND "Passar tambÃ©m junto ao" WHERE.
+ // WHERE "passar os valores que estão na tabela"
+ // AND "Passar também junto ao" WHERE.
  ?>

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../../styles/table.css">
 <?php include ('../default-page/index.body.php'); ?>
 
-<!-- FORMULÃRIOS PARA O SUBMENU -->
+<!-- FORMULÁRIOS PARA O SUBMENU -->
 <section class="page-information page-submenu">
   <div class="box-info">
     <h1>Listagem de Categorias</h1>
@@ -26,8 +26,8 @@
   <div class="table">
     <div class="row">
       <div class="cell-category"><p> Categorias </p></div>
-      <div class="cell-category"><p> DescriÃ§Ãµes </p></div>
-      <div class="cell-category"><p> AÃ§Ãµes </p></div>
+      <div class="cell-category"><p> Descrições </p></div>
+      <div class="cell-category"><p> Ações </p></div>
     </div>
   <?php
   foreach ($categorias as $categoria) {

@@ -1,20 +1,21 @@
 <?php
-// Muda configuraÃ§Ã£o do PHP para trabalhar com imagens no DB
+// Muda configuração do PHP para trabalhar com imagens no DB
 ini_set ('odbc.defaultlrl', 9000000);
 set_time_limit(0); // Carregar IMG
 
-// VerificaÃ§Ã£o de acesso do usuÃ¡rio!
+// Verificação de acesso do usuário!
 include('../../dataBase/authentication/access.php');
 include('../../dataBase/connect/index.php');
 
-// Esperando aÃ§Ã£o via GET ou POST do UsuÃ¡rio.
+// Esperando ação via GET ou POST do Usuário.
 if(isset($_REQUEST['acao'])){
   $acao = $_REQUEST['acao'];
-  // Criando condiÃ§Ãµes para as aÃ§Ãµes
+  // Criando condições para as ações
   switch ($acao) {
     // INCLUIR NOVO PRODUTO --------------------------------------------------
     // -----------------------------------------------------------------------
     case 'incluir':
+      $msgUsuario = "Atenção! Todos os campos devem ser preenchidos";
       include('new-product.tpl.php');
       break;
     // APAGAR CATEGORIA ------------------------------------------------------
@@ -25,7 +26,8 @@ if(isset($_REQUEST['acao'])){
     // EDITAR CATEGORIA ------------------------------------------------------
     // -----------------------------------------------------------------------
     case 'editar':
-      // Verificando id se existe ou nÃ£o (passando Nulo caso nÃ£o exista).
+      $msgUsuario = "Atenção! Todos os campos devem ser preenchidos";
+      // Verificando id se existe ou não (passando Nulo caso não exista).
       $idProduto = is_numeric($_REQUEST['id']) ? $_REQUEST['id'] : 'NULL';
       // Consultado produto escolhida
       $query_produto = odbc_exec($db, 'SELECT
@@ -41,10 +43,10 @@ if(isset($_REQUEST['acao'])){
 
         include('edit-product.tpl.php');
         break;
-    // MENSAGEM PADRÃƒO -------------------------------------------------------
+    // MENSAGEM PADRÃO -------------------------------------------------------
     // -----------------------------------------------------------------------
     default:
-      $msgUsuario = "A aÃ§Ã£o escolhida nÃ£o Ã© vÃ¡lida!";
+      $msgUsuario = "A ação escolhida não é válida!";
       include('../../dataBase/queries/query-full-product.php');
       include('list-product.tpl.php');
   } /* -- FIM DO SWITCH -- */
@@ -53,25 +55,32 @@ if(isset($_REQUEST['acao'])){
   // CADASTRAR NOVO PRODUTOS --------------------------------------------------
 	// --------------------------------------------------------------------------
   if(isset($_POST['btnNovoProduto'])){
-  		// Tratando informaÃ§Ãµe do formulÃ¡rio para uma vareÃ¡vel
-  		$padroes = "/[^a-zA-Z0-9 ]+/";
-  		$padroesInteiro = "/[^0-9.,]+/";
-  		$substituicao = "";
-  		// Tratando inputs para salvar no Banco de Dados...
-  		$inputProduto 	= preg_replace($padroes, $substituicao, $_POST['inputProduto']);
-  		$inputPreco 	  = preg_replace($padroesInteiro, $substituicao, $_POST['inputPreco']);
-  		$inputEstoque 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputEstoque']);
-  		$inputDesconto 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputDesconto']);
-  		$inputCategoria = preg_replace($padroesInteiro, $substituicao, $_POST['inputCategoria']);
-  		$inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
-  		$inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativaÃ§Ã£o
+		if($_POST['inputProduto'] != NULL && 
+       $_POST['inputPreco'] != NULL && 
+       $_POST['inputEstoque'] != NULL && 
+       $_POST['inputDesconto'] != NULL && 
+       $_POST['inputCategoria'] != NULL && 
+       $_POST['inputDescricao'] != NULL && 
+       $_FILES['inputImagem'] != NULL){
+      // Tratando informaçõe do formulário para uma vareável
+      $padroes = "/[^a-zA-Z0-9 ]+/";
+      $padroesInteiro = "/[^0-9.,]+/";
+      $substituicao = "";
+      // Tratando inputs para salvar no Banco de Dados...
+      $inputProduto   = preg_replace($padroes, $substituicao, $_POST['inputProduto']);
+      $inputPreco     = preg_replace($padroesInteiro, $substituicao, $_POST['inputPreco']);
+      $inputEstoque   = preg_replace($padroesInteiro, $substituicao, $_POST['inputEstoque']);
+      $inputDesconto  = preg_replace($padroesInteiro, $substituicao, $_POST['inputDesconto']);
+      $inputCategoria = preg_replace($padroesInteiro, $substituicao, $_POST['inputCategoria']);
+      $inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
+      $inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativação
       // Tratando a Imagem.
       $inputImagem = $_FILES['inputImagem']['tmp_name'];
       $imagem = fopen($inputImagem, "rb");
       $conteudo = fread($imagem, filesize($inputImagem));
       
-           		// Efetuando cadastro da NOVO PRODUTO ----------------------------
-  		$sql =  "INSERT INTO Produto
+      // Efetuando cadastro da NOVO PRODUTO ----------------------------
+      $sql =  "INSERT INTO Produto
                                 (nomeProduto,
                                  precProduto,
                                  idCategoria,
@@ -89,61 +98,99 @@ if(isset($_REQUEST['acao'])){
 
       if($resposta = odbc_execute($prepare, $parametro)){ 
         $msgUsuario = "Produto foi cadastrado com sucesso.";
-      }else 
+      }else{
         $msgUsuario = "Erro ao tentar cadastrar novo produto.";
-    
-    } // Fim da aÃ§Ã£o btnNovoProduto
+      }
+
+      }else{
+        $msgUsuario = "Por favor, Preencher todos os Campos";
+        include('new-product.tpl.php');
+        exit;
+      }    
+    } // Fim da ação btnNovoProduto
 
   // ATUALIZAR NOVO PRODUTOS -------------------------------------------------
 	// -------------------------------------------------------------------------
 	if(isset($_POST['btnGravarProduto'])){
-		// Tratando informaÃ§Ãµe do formulÃ¡rio para uma vareÃ¡vel
-		$padroes = "/[^a-zA-Z0-9 ]+/";
-		$padroesInteiro = "/[^0-9 .,]+/";
-		$substituicao = "";
+    if($_POST['inputProduto'] != NULL && 
+       $_POST['inputPreco'] != NULL && 
+       $_POST['inputEstoque'] != NULL && 
+       $_POST['inputDesconto'] != NULL && 
+       $_POST['inputCategoria'] != NULL && 
+       $_POST['inputDescricao'] != NULL){
+  		// Tratando informaçõe do formulário para uma vareável
+  		$padroes = "/[^a-zA-Z0-9 ]+/";
+  		$padroesInteiro = "/[^0-9.,]+/";
+  		$substituicao = "";
 
-		// Tratando inputs para salvar no Banco de Dados...
-		$inputProduto		= preg_replace($padroes, $substituicao, $_POST['inputProduto']);
-		$inputPreco 		= preg_replace($padroesInteiro, $substituicao, $_POST['inputPreco']);
-		$inputEstoque 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputEstoque']);
-		$inputDesconto 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputDesconto']);
-		$inputCategoria = preg_replace($padroesInteiro, $substituicao, $_POST['inputCategoria']);
-		$inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
-		$idProduto 			= preg_replace($padroesInteiro, $substituicao, $_POST['btnGravarProduto']);
-		$inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; // Pega a ativaÃ§Ã£o
-    // Tratando a Imagem.
-    if(empty($_FILES['inputImagem']['tmp_name'])){
-      $conteudo = NULL;
+  		// Tratando inputs para salvar no Banco de Dados...
+  		$inputProduto		= preg_replace($padroes, $substituicao, $_POST['inputProduto']);
+  		$inputPreco 		= preg_replace($padroesInteiro, $substituicao, $_POST['inputPreco']);
+  		$inputEstoque 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputEstoque']);
+  		$inputDesconto 	= preg_replace($padroesInteiro, $substituicao, $_POST['inputDesconto']);
+  		$inputCategoria = preg_replace($padroesInteiro, $substituicao, $_POST['inputCategoria']);
+  		$inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
+  		$idProduto 			= preg_replace($padroesInteiro, $substituicao, $_POST['btnGravarProduto']);
+  		$inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; // Pega a ativação
+      // Tratando a Imagem.
+      if(empty($_FILES['inputImagem']['tmp_name'])){
+        $query_produto = odbc_exec($db, 'SELECT imagem
+                                         FROM  Produto
+                                         WHERE idProduto = '.$_POST['btnGravarProduto']);
+
+        $array_produto = odbc_fetch_array($query_produto);
+        $conteudo = $array_produto['imagem'];
+      }else{
+        $inputImagem = $_FILES['inputImagem']['tmp_name'];
+        $imagem = fopen($inputImagem, "rb");
+        $conteudo = fread($imagem, filesize($inputImagem));
+      }
+      $stmt  = odbc_prepare($db, "UPDATE
+                                  Produto
+                                  SET
+                                  nomeProduto=?,
+                                  precProduto=?,
+                                  qtdMinEstoque=?,
+                                  descontoPromocao=?,
+                                  idCategoria=?,
+                                  ativoProduto=?,
+                                  descProduto=?,
+                                  imagem=?
+                                  WHERE
+                                  idProduto=?");
+
+      $resut = odbc_execute($stmt,array($inputProduto, $inputPreco, $inputEstoque, $inputDesconto, $inputCategoria,$inputAtivo, $inputDescricao, $conteudo, $idProduto));
+
+        if(isset($resut)) 
+          $msgUsuario = "Produto foi atualizado com sucesso.";
+        else 
+          $msgUsuario = "Erro ao tentar atualizar novo produto.";
+
+        if(!empty($_FILES['inputImagem']['tmp_name'])){
+          fclose($imagem);
+        }
+
     }else{
-      $inputImagem = $_FILES['inputImagem']['tmp_name'];
-      $imagem = fopen($inputImagem, "rb");
-      $conteudo = fread($imagem, filesize($inputImagem));
-    }
-    $stmt  = odbc_prepare($db, "UPDATE
-                                Produto
-                                SET
-                                nomeProduto=?,
-                                precProduto=?,
-                                qtdMinEstoque=?,
-                                descontoPromocao=?,
-                                idCategoria=?,
-                                ativoProduto=?,
-                                descProduto=?,
-                                imagem=?
-                                WHERE
-                                idProduto=?");
+      $msgUsuario = "Por favor, Preencher todos os Campos";
+      $query_produto = odbc_exec($db, 'SELECT
+                                             idProduto, nomeProduto,
+                                             descProduto, precProduto,
+                                             descontoPromocao, idCategoria,
+                                             ativoProduto, idUsuario,
+                                             qtdMinEstoque, imagem
+                                       FROM  Produto
+                                       WHERE idProduto = '.$_POST['btnGravarProduto']);
 
-    $resut = odbc_execute($stmt,array($inputProduto, $inputPreco, $inputEstoque, $inputDesconto, $inputCategoria,$inputAtivo, $inputDescricao, $conteudo, $idProduto));
+      $array_produto = odbc_fetch_array($query_produto);
 
-      if(isset($resut)) 
-        $msgUsuario = "Produto foi atualizado com sucesso.";
-      else 
-        $msgUsuario = "Erro ao tentar atualizar novo produto.";
+      include('edit-product.tpl.php');
+      exit;
+    } 
+	} // Fim da ação btnAtualizar
 
 
-    fclose($imagem);
-	} // Fim da aÃ§Ã£o btnAtualizar
-
+  // PROCURAR PRODUTOS -------------------------------------------------------
+  // -------------------------------------------------------------------------
   if(isset($_POST['btn-search'])){
     $search = '%'.$_POST['search'].'%';
 
@@ -164,25 +211,30 @@ if(isset($_REQUEST['acao'])){
                                       ON P.idUsuario = U.idUsuario
                                     WHERE nomeProduto LIKE '$search'");
 
-    if(!$searchConsulta){
+    if(isset($searchConsulta)){
       $counter = 0;
       while ($result = odbc_fetch_array($searchConsulta)) {
         // Passando cada campo do array uma categorias.
         $produtos[$counter] = $result;
         $counter++;
       }
-      include('list-product.tpl.php');
-      exit;
-    }else{
-     // Listando os produtos na pÃ¡gina.
-    $msgUsuario = "Nenhum produto encontrado !";
-     include('../../dataBase/queries/query-full-product.php');
-     include('list-product.tpl.php');
-     exit;
+
+      if(isset($produtos)){
+        include('list-product.tpl.php');
+        exit;
+      }else{
+        // Listando os produtos na página.
+        $msgUsuario = "Nenhum produto encontrado !";
+        include('../../dataBase/queries/query-full-product.php');
+        include('list-product.tpl.php');
+        exit;
+      }
     }
+  }/* -- btn-search -- */
 
-  } /* -- btn-search -- */
 
+  // FILTRAR PRODUTOS --------------------------------------------------------
+  // -------------------------------------------------------------------------
   if(isset($_POST['btn-filter'])){
     if(isset($_POST['filter-category'])) $filterCategoria = $_POST['filter-category'];
     else $filterCategoria = NULL;
@@ -201,13 +253,13 @@ if(isset($_REQUEST['acao'])){
                                                U.nomeUsuario,
                                                P.qtdMinEstoque,
                                                P.imagem
-                                FROM Produto AS P
-                                  LEFT OUTER JOIN Categoria AS C
-                                  ON P.idCategoria = C.idCategoria
-                                  LEFT OUTER JOIN Usuario AS U
-                                  ON P.idUsuario = U.idUsuario
-                                WHERE P.idCategoria LIKE '$filterCategoria'
-                                AND   P.ativoProduto LIKE '$filterAtivo'");
+                                        FROM Produto AS P
+                                          LEFT OUTER JOIN Categoria AS C
+                                          ON P.idCategoria = C.idCategoria
+                                          LEFT OUTER JOIN Usuario AS U
+                                          ON P.idUsuario = U.idUsuario
+                                        WHERE P.idCategoria LIKE '$filterCategoria'
+                                        AND   P.ativoProduto LIKE '$filterAtivo'");
     }else{
       $searchConsulta = odbc_exec($db, "SELECT P.idProduto,
                                                P.nomeProduto,
@@ -219,33 +271,36 @@ if(isset($_REQUEST['acao'])){
                                                U.nomeUsuario,
                                                P.qtdMinEstoque,
                                                P.imagem
-                                FROM Produto AS P
-                                  LEFT OUTER JOIN Categoria AS C
-                                  ON P.idCategoria = C.idCategoria
-                                  LEFT OUTER JOIN Usuario AS U
-                                  ON P.idUsuario = U.idUsuario
-                                WHERE P.ativoProduto LIKE '$filterAtivo'");
+                                        FROM Produto AS P
+                                          LEFT OUTER JOIN Categoria AS C
+                                          ON P.idCategoria = C.idCategoria
+                                          LEFT OUTER JOIN Usuario AS U
+                                          ON P.idUsuario = U.idUsuario
+                                        WHERE P.ativoProduto LIKE '$filterAtivo'");
     }
 
-    if(!$searchConsulta){
+    if(isset($searchConsulta)){
       $counter = 0;
       while ($result = odbc_fetch_array($searchConsulta)) {
         // Passando cada campo do array uma categorias.
         $produtos[$counter] = $result;
         $counter++;
       }
-      include('list-product.tpl.php');
-      exit;
-    }else{
-       // Listando os produtos na pÃ¡gina.
+
+      if(isset($produtos)){
+        include('list-product.tpl.php');
+        exit;
+      }else{
+        // Listando os produtos na página.
       $msgUsuario = "Nenhum produto encontrado !";
        include('../../dataBase/queries/query-full-product.php');
        include('list-product.tpl.php');
        exit;
+      }
     }
-  } /* -- btn-search -- */
+  } /* -- btn-filter -- */
 
-  // Listando os produtos na pÃ¡gina.
+  // Listando os produtos na página.
   include('../../dataBase/queries/query-full-product.php');
   include('list-product.tpl.php');
 }

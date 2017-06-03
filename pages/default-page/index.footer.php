@@ -2,10 +2,10 @@
 <div class="footer-full-page">
   <footer class="footer">
     <div class="product">
-      <h3 class="title"> A√ß√µes </h3><br>
+      <h3 class="title"> AÁıes </h3><br>
       <a class="link" href="../category/"> Listar Categoria </a><br>
       <a class="link" href="../product/"> Listar Produto  </a><br>
-      <a class="link" href="../user/"> Listar Usu√°rio  </a><br>
+      <a class="link" href="../user/"> Listar Usu·rio  </a><br>
     </div>
     <div class="user">
       <h3 class="title"> Projeto Integrador </h3><br>
@@ -19,7 +19,7 @@
       <a class="link" href="https://www.linkedin.com/in/saulo-sinesio-377850127/" target="_blank"> Saulo Sinesio </a><br>
     </div>
     <div class="developer">
-      <p class="developer-text"><a href="http://sistemasparainter.net" target="_blank">Projeto integrador 2 - Centro Universit√°rio Senac Santo Amaro - Tecnologia em Sistemas para Internet</a></p>
+      <p class="developer-text"><a href="http://sistemasparainter.net" target="_blank">Projeto integrador 2 - Centro Universit·rio Senac Santo Amaro - Tecnologia em Sistemas para Internet</a></p>
     </div>
   </footer>
 </div>

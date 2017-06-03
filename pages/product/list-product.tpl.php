@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../../styles/table.css">
 <?php include ('../default-page/index.body.php'); ?>
 
-<!-- FORMULÃRIOS PARA O SUBMENU -->
+<!-- FORMULÁRIOS PARA O SUBMENU -->
 <section class="page-submenu page-information">
   <div class="box-info">
     <h1>Listagem de Produtos</h1>
@@ -64,14 +64,14 @@
       <div class="cell-product"><p>ID</p></div>
       <div class="cell-product"><p>Imagem</p></div>
       <div class="cell-product"><p>Nome</p></div>
-      <div class="cell-product"><p>DescriÃ§Ã£o</p></div>
-      <div class="cell-product"><p>PreÃ§o</p></div>
-      <div class="cell-product"><p>PromoÃ§Ã£o</p></div>
+      <div class="cell-product"><p>Descrição</p></div>
+      <div class="cell-product"><p>Preço</p></div>
+      <div class="cell-product"><p>Promoção</p></div>
       <div class="cell-product"><p>Quantidade</p></div>
       <div class="cell-product"><p>Categoria</p></div>
-      <div class="cell-product"><p>SituaÃ§Ã£o</p></div>
-      <div class="cell-product"><p>Usuario</p></div>
-      <div class="cell-product"><p>AÃ§Ãµes</p></div>
+      <div class="cell-product"><p>Situação</p></div>
+      <div class="cell-product"><p>Usuário</p></div>
+      <div class="cell-product"><p>Ações</p></div>
     </div>
     <?php
     foreach($produtos as $produto){

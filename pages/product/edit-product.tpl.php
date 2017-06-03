@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../../styles/form.css">
 <?php include ('../default-page/index.body.php'); ?>
 
-<!-- FORMULÃRIOS PARA O SUBMENU -->
+<!-- FORMULÁRIOS PARA O SUBMENU -->
 <section class="page-submenu page-information">
   <div class="box-info">
     <h1>Editar Produto</h1>
@@ -15,7 +15,16 @@
   </div>
  </section>
 
-<!-- FORMULÃRIOS PARA CADASTRAR NOVO PRODUTO -->
+ <!-- MENSAGENS DE ERROS -->
+<?php
+  if(isset($msgUsuario)){
+    echo "<section class='message-user'>
+            <h5 class='msgUsuario'>$msgUsuario</h5>
+          </section>";
+  }
+?>
+
+<!-- FORMULÁRIOS PARA CADASTRAR NOVO PRODUTO -->
 <form method="post" action="../product/" id="frm" enctype="multipart/form-data">
 	<div class="form-box">
     <div class="form-box-1">
@@ -24,9 +33,9 @@
         <label class="label-box">Nome:</label>
         <input type="text" name="inputProduto" value="<?php echo $array_produto['nomeProduto'];?>">
       </div>
-      <!-- Campo para adicionar o preÃ§o do Produto -->
+      <!-- Campo para adicionar o preço do Produto -->
       <div class="campo">
-        <label class="label-box">PreÃ§o:</label>
+        <label class="label-box">Preço:</label>
         <input type="text" name="inputPreco" value="<?php echo $array_produto['precProduto'];?>">
       </div>
       <!-- Campo para adicionar a desconto do Produto -->
@@ -42,9 +51,9 @@
     </div> <!-- fim div form-box-1 -->
 
     <div class="form-box-2">
-      <!-- Campo para adicionar a descriÃ§Ã£o do Produto -->
+      <!-- Campo para adicionar a descrição do Produto -->
   		<div class="campo">
-  		  <label class="label-box">DescriÃ§Ã£o:</label>
+  		  <label class="label-box">Descrição:</label>
   		  <textarea type="text" name="inputDescricao" rows="10" style="width: 100%"><?php echo $array_produto['descProduto'];?></textarea>
   		</div>
     </div> <!-- fim div form-box-2 -->
@@ -55,7 +64,7 @@
         <label class="label-box">Categoria:</label>
         <select name="inputCategoria">
           <?php
-          // Criando a opÃ§Ãµes das categorias
+          // Criando a opções das categorias
           $consulta = odbc_exec($db, "SELECT nomeCategoria, idCategoria FROM Categoria");
           while ($r = odbc_fetch_array($consulta))
           echo '<option value="'.$r['idCategoria'].'">'.$r['nomeCategoria'].'</option>';
@@ -84,7 +93,7 @@
         <input type="file" id="inputImagem" name="inputImagem" value="<?php echo  $conteudo_base64;?>">
         <span id='inputImagem'></span>
       </div>
-      <!-- BotÃ£o para validar os campos acima no banco de dados -->
+      <!-- Botão para validar os campos acima no banco de dados -->
       <div class="campo">
         <button type="submit" name="btnGravarProduto" value="<?php echo $array_produto['idProduto'];?>">Salvar</button>
       </div>

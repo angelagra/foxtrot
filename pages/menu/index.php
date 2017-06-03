@@ -28,7 +28,7 @@
 <div class="box-user">
   <a href="../user/">
     <div class="box-effect box-effect">
-      <p class="link-page link-right">USU√ÅRIOS</p>
+      <p class="link-page link-right">USU¡RIOS</p>
     </div>
   </a>
 </div>

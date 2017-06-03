@@ -1,7 +1,7 @@
 <?php
   $id = $_GET['id'];
   $done = false;
-  $msgUsuario = "ERRO - Categoria n√£o existe!";
+  $msgUsuario = "ERRO - Categoria n„o existe!";
 
   // Verificando se existe o produto a ser EXCLUIDO.
   $consulta = odbc_exec($db, "SELECT idCategoria FROM Categoria");
@@ -12,29 +12,26 @@
     }
   }
 
-  // // Verificando se a categoria contem algum produto registrado.
-  // if($done == true){
-  //   $check = odbc_exec($db, "SELECT idCategoria FROM Produto WHERE idCategoria = $id");
-  //   while ($result = odbc_fetch_array($check)){
-  //     if($result['idCategoria'] == $id){
-  //       $done = true;
-  //       break;
-  //     }else{
-  //       $done = false;
-  //       $msgUsuario = "N√£o foi poss√≠vel excluir a categoria, pois existem produtos relacionados a categoria!";
-  //       break;
-  //     }
-  //   }
-  // }
+   // Verificando se a categoria contem algum produto registrado.
+   if($done == true){
+     $check = odbc_exec($db, 'SELECT idCategoria FROM Produto WHERE idCategoria = '.$id);
+     while ($result = odbc_fetch_array($check)){
+       if($result['idCategoria'] == $id){
+         $msgUsuario = "N„o foi possÌvel excluir a categoria, pois existem produtos relacionados a categoria!";
+         $done = false;
+         break;
+       }
+     }
+   }
 
-  // Verificando se o id √© um n√∫mero.
+  // Verificando se o id È um n˙mero.
   if($done == true && is_numeric($id)){
     $done = false;
     if($consulta = odbc_exec($db, "DELETE FROM Categoria WHERE idCategoria = {$id}")){
       if(odbc_num_rows($consulta) > 0)
         $msgUsuario = "Categoria excluido com sucesso!";
       else
-        $msgUsuario = "ERRO - Categoria n√£o existe!";
+        $msgUsuario = "ERRO - Categoria n„o existe!";
     }else{
       $msgUsuario = "Erro ao excluir categoria!";
     }

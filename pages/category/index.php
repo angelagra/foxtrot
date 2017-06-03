@@ -1,17 +1,17 @@
 <?php
-  // VerificaÃ§Ã£o de acesso do usuÃ¡rio!
+  // Verificação de acesso do usuário!
   include('../../dataBase/authentication/access.php');
   include('../../dataBase/connect/index.php');
 
-  // Esperando aÃ§Ã£o via GET ou POST do UsuÃ¡rio.
+  // Esperando ação via GET ou POST do Usuário.
   if(isset($_REQUEST['acao'])){
     $acao = $_REQUEST['acao'];
-    // Criando condiÃ§Ãµes para as aÃ§Ãµes
+    // Criando condições para as ações
     switch ($acao) {
       // INCLUIR NOVA CATEGORIA ------------------------------------------------
       // -----------------------------------------------------------------------
       case 'incluir':
-        // Se o formulÃ¡rio nÃ£o foi apresentado, entrar no formulÃ¡rio.
+        // Se o formulário não foi apresentado, entrar no formulário.
         include('new-category.tpl.php');
         break;
       // APAGAR CATEGORIA ------------------------------------------------------
@@ -22,33 +22,33 @@
       // EDITAR CATEGORIA ------------------------------------------------------
       // -----------------------------------------------------------------------
       case 'editar':
-        // Verificando id se existe ou nÃ£o (passando Nulo caso nÃ£o exista).
+        // Verificando id se existe ou não (passando Nulo caso não exista).
         $idCategoria = is_numeric($_REQUEST['id']) ? $_REQUEST['id'] : 'NULL';
         // Consultado categoria escolhida
         $consulta = odbc_exec($db, 'SELECT idCategoria, nomeCategoria, descCategoria
                                     FROM   Categoria
                                     WHERE  idCategoria ='.$idCategoria);
-        // idCategoria estÃ¡ sendo concatenado, pois ele Ã© um nÃºmero. e nÃ£o interfere no banco de dados.
-        // Criando um array com as informaÃ§Ãµes da categoria escolhida
+        // idCategoria está sendo concatenado, pois ele é um número. e não interfere no banco de dados.
+        // Criando um array com as informações da categoria escolhida
         $arryCategoria = odbc_fetch_array($consulta);
         include('edit-category.tpl.php');
         break;
-      // MENSAGEM PADRÃƒO -------------------------------------------------------
+      // MENSAGEM PADRÃO -------------------------------------------------------
       // -----------------------------------------------------------------------
       default:
-        $msgUsuario = "A aÃ§Ã£o escolhida nÃ£o Ã© vÃ¡lida!";
+        $msgUsuario = "A ação escolhida não é válida!";
         include('../../dataBase/queries/query-full-category.php');
         include('list-category.tpl.php');
     } /* -- FIM DO SWITCH -- */
   }else{
-    // Tratando informaÃ§Ãµe do formulÃ¡rio para uma vareÃ¡vel
+    // Tratando informaçõe do formulário para uma vareável
     $padroes = "/[^a-zA-Z0-9 ]+/";
     $substituicao = "";
 
     // CADASTRAR NOVA CATEGORIA ------------------------------------------------
     // -------------------------------------------------------------------------
     if(isset($_POST['bntSalvar'])){
-      // Tratando categoria e descriÃ§Ã£o ...
+      // Tratando categoria e descrição ...
       $inputCategoria = preg_replace($padroes, $substituicao, $_POST['inputCategoria']);
       $inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
 
@@ -63,17 +63,17 @@
       }else{
         $msgUsuario = "Erro ao cadastar uma nova categoria.";
       }
-    } // Fim da aÃ§Ã£o bntSalvar
+    } // Fim da ação bntSalvar
 
     // ATUALIZAR NOVA CATEGORIA ------------------------------------------------
     // -------------------------------------------------------------------------
     if(isset($_POST['btnAtualizar'])){
-      // Tratando categoria e descriÃ§Ã£o ...
+      // Tratando categoria e descrição ...
       $inputCategoria = preg_replace($padroes, $substituicao, $_POST['inputCategoria']);
       $inputDescricao = preg_replace($padroes, $substituicao, $_POST['inputDescricao']);
       $idCategoria    = preg_replace($padroes, $substituicao, $_POST['btnAtualizar']);
 
-      // Efetuando atualizaÃ§Ã£o na categoria passada via GET.
+      // Efetuando atualização na categoria passada via GET.
       if(odbc_exec($db, "UPDATE Categoria
                          SET
                          nomeCategoria = '$inputCategoria',
@@ -82,11 +82,11 @@
                          idCategoria = '$idCategoria'")){
         $msgUsuario = "Categoria $inputCategoria atualizada com sucesso!";
       }else{
-        $msgUsuario = "Erro ao gravar atualizaÃ§Ã£o da categoria.";
+        $msgUsuario = "Erro ao gravar atualização da categoria.";
       }
-    } // Fim da aÃ§Ã£o btnAtualizar
+    } // Fim da ação btnAtualizar
 
-    // Listando as Categorias na pÃ¡gina. ---------------------------------------
+    // Listando as Categorias na página. ---------------------------------------
     // -------------------------------------------------------------------------
     include('../../dataBase/queries/query-full-category.php');
     include('list-category.tpl.php');

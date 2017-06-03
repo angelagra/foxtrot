@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../../styles/form.css">
 <?php include ('../default-page/index.body.php'); ?>
 
-<!-- FORMULÃRIOS PARA O SUBMENU -->
+<!-- FORMULÁRIOS PARA O SUBMENU -->
 <section class="page-submenu page-information">
   <div class="box-info">
     <h1>Editar Categoria</h1>
@@ -16,7 +16,7 @@
  </section>
 
 
-<!-- FormulÃ¡rio para atualizaÃ§Ã£o de uma categoria -->
+<!-- Formulário para atualização de uma categoria -->
 <form method="post" action="../category/" name="form"><br><br>
   <div class="form-box">
     <!-- Campo para adicionar o nome da Categoria -->
@@ -24,15 +24,15 @@
       <label class="label-box">Categoria:</label>
       <input type="text" name="inputCategoria" value="<?php echo $arryCategoria['nomeCategoria'];?>">
     </div>
-    <!-- Campo para adicionar uma breve descriÃ§Ã£o da categoria -->
+    <!-- Campo para adicionar uma breve descrição da categoria -->
     <div class="campo">
-      <label class="label-box">DescriÃ§Ã£o:</label>
+      <label class="label-box">Descrição:</label>
       <textarea type="text" name="inputDescricao" rows="10" style="width: 30%" value="<?php echo $arryCategoria['descCategoria'];?>"></textarea>
     </div>
-    <!-- BotÃ£o para validar os campos acima no banco de dados -->
+    <!-- Botão para validar os campos acima no banco de dados -->
     <!--
-      Passamos a informaÃ§Ã£o do idCategoria como valor do botÃ£o para nÃ£o perder o dado quando
-      voltar para a pÃ¡gina de listagem de Categorias e assim finaliaz a atualizaÃ§Ã£o
+      Passamos a informação do idCategoria como valor do botão para não perder o dado quando
+      voltar para a página de listagem de Categorias e assim finaliaz a atualização
     -->
     <div class="campo">
       <button type="submit" name="btnAtualizar" value="<?php echo $arryCategoria['idCategoria'];?>">Atualizar</button>

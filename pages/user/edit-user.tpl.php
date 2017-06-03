@@ -2,15 +2,15 @@
 <link rel="stylesheet" href="../../styles/form.css">
 <?php include ('../default-page/index.body.php'); ?>
 
-<!-- FORMUL√ÅRIOS PARA O SUBMENU -->
+<!-- FORMUL¡RIOS PARA O SUBMENU -->
 <section class="page-submenu page-information">
   <div class="box-info">
-    <h1>Editar Usu√°rio</h1>
+    <h1>Editar Usu·rio</h1>
   </div>
   <!-- Adicionar novo Produto -->
   <div class="box-btn">
     <button type="button" name="btn-add" class="btn-add">
-      <h3><a class="btn-link" href="../user/">Voltar aos usu√°rios</a></h3>
+      <h3><a class="btn-link" href="../user/">Voltar aos usu·rios</a></h3>
     </button>
   </div>
  </section>

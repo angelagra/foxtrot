@@ -1,7 +1,7 @@
 <?php
   $id = $_GET['id'];
 
-  // Verificando permi√ß√£o do usu√°rio pra liberar acesso.
+  // Verificando permiÁ„o do usu·rio pra liberar acesso.
   if($_SESSION['tipoPerfil'] == 'A' || $_SESSION['tipoPerfil'] == 'a'){
     // Verificando se existe o produto a ser EXCLUIDO.
     $consulta = odbc_exec($db, "SELECT idUsuario FROM Usuario");
@@ -11,24 +11,24 @@
         break;
       }else{
         $done = false;
-        $msgUsuario = "ERRO - Usu√°rio n√£o existe!";
+        $msgUsuario = "ERRO - Usu·rio n„o existe!";
       }
     }
 
-    // Verificando se o id √© um n√∫mero.
+    // Verificando se o id È um n˙mero.
     if($done == true && is_numeric($id)){
       $done = false;
       if($consulta = odbc_exec($db, "DELETE FROM Usuario WHERE idUsuario = {$id}")){
         if(odbc_num_rows($consulta) > 0)
-          $msgUsuario = "Usu√°rio excluido com sucesso!";
+          $msgUsuario = "Usu·rio excluido com sucesso!";
         else
-          $msgUsuario = "ERRO - Usu√°rio n√£o existe!";
+          $msgUsuario = "ERRO - Usu·rio n„o existe!";
       }else{
-        $msgUsuario = "ERRO - ao excluir usu√°rio!";
+        $msgUsuario = "ERRO - ao excluir usu·rio!";
       }
     }
   }else{
-    $msgUsuario = "ERRO - Voc√™ n√£o possui permi√ß√£o para excluir um Usu√°rio!";
+    $msgUsuario = "ERRO - VocÍ n„o possui permiÁ„o para excluir um Usu·rio!";
   }
 
   include('../../dataBase/queries/query-full-user.php');

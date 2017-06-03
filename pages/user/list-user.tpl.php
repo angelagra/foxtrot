@@ -2,12 +2,12 @@
 <link rel="stylesheet" href="../../styles/table.css">
 <?php include ('../default-page/index.body.php'); ?>
 
-<!-- FORMUL√ÅRIOS PARA O SUBMENU -->
+<!-- FORMUL¡RIOS PARA O SUBMENU -->
 <section class="page-information page-submenu">
-  <h1>Listagem de Usu√°rio</h1>
+  <h1>Listagem de Usu·rio</h1>
   <div class="box-btn">
     <button type="button" name="btn-add" class="btn-add">
-      <h3><a class="btn-link" href="?acao=incluir">Adicionar Usu√°rio</a></h3>
+      <h3><a class="btn-link" href="?acao=incluir">Adicionar Usu·rio</a></h3>
     </button>
   </div>
 </section>
@@ -27,8 +27,8 @@
 			<div class="cell-user"><p>Nome</p></div>
 			<div class="cell-user"><p>Login</p></div>
 			<div class="cell-user"><p>Perfil</p></div>
-			<div class="cell-user"><p>Situa√ß√£o</p></div>
-			<div class="cell-user"><p>A√ß√µes</p></div>
+			<div class="cell-user"><p>SituaÁ„o</p></div>
+			<div class="cell-user"><p>AÁıes</p></div>
 		</div>
 		<?php
 		foreach($usuarios as $usuario){
@@ -36,7 +36,7 @@
       else $usuarioAtivo = "Desativado";
 
       if($usuario['tipoPerfil'] == "A") $tipoPerfil = "Administrador";
-      elseif($usuario['tipoPerfil'] == "C") $tipoPerfil = "Usu√°rio";
+      elseif($usuario['tipoPerfil'] == "C") $tipoPerfil = "Usu·rio";
       else $tipoPerfil = "Sem Perfil";
 			echo "
           <div class='row'>

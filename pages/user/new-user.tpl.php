@@ -2,23 +2,23 @@
 <link rel="stylesheet" href="../../styles/form.css">
 <?php include ('../default-page/index.body.php'); ?>
 
-<!-- FORMUL√ÅRIOS PARA O SUBMENU -->
+<!-- FORMUL¡RIOS PARA O SUBMENU -->
 <section class="page-submenu page-information">
   <div class="box-info">
-    <h1>Adicionar Usu√°rio</h1>
+    <h1>Adicionar Usu·rio</h1>
   </div>
   <!-- Adicionar novo Produto -->
   <div class="box-btn">
     <button type="button" name="btn-add" class="btn-add">
-      <h3><a class="btn-link" href="../user/">Voltar aos usu√°rios</a></h3>
+      <h3><a class="btn-link" href="../user/">Voltar aos usu·rios</a></h3>
     </button>
   </div>
  </section>
 
-<!-- Formul√°rio para cadastro de um novo usu√°rio -->
+<!-- Formul·rio para cadastro de um novo usu·rio -->
 <form method="post" action="../user/">
 	<div class="form-box">
-    <!-- Campo para adicionar o nome do usu√°rio -->
+    <!-- Campo para adicionar o nome do usu·rio -->
 		<div class="campo">
 			<label class="label-box">Nome:</label>
 			<input type="text" name="inputNome" style="width: 17em">
@@ -42,7 +42,7 @@
 			</select>
 		</div>
     <!-- Campo para adicionar ativado ou desativado -->
-    <!-- Como padr√£o, j√° vai ativado -->
+    <!-- Como padr„o, j· vai ativado -->
 		<div class="campo">
 			<label class="label-box">Ativo:</label>
 			<input type="checkbox" name="inputAtivo" checked>

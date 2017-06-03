@@ -1,12 +1,12 @@
 <?php
-  // VerificaÃ§Ã£o de acesso do usuÃ¡rio!
+  // Verificação de acesso do usuário!
   include('../../dataBase/authentication/access.php');
   include('../../dataBase/connect/index.php');
 
-  // Esperando aÃ§Ã£o via GET ou POST do UsuÃ¡rio.
+  // Esperando ação via GET ou POST do Usuário.
   if(isset($_REQUEST['acao'])){
     $acao = $_REQUEST['acao'];
-    // Criando condiÃ§Ãµes para as aÃ§Ãµes
+    // Criando condições para as ações
     switch ($acao) {
       // INCLUIR NOVA CATEGORIA ------------------------------------------------
       // -----------------------------------------------------------------------
@@ -21,36 +21,36 @@
       // EDITAR CATEGORIA ------------------------------------------------------
       // -----------------------------------------------------------------------
       case 'editar':
-        // Verificando id se existe ou nÃ£o (passando Nulo caso nÃ£o exista).
+        // Verificando id se existe ou não (passando Nulo caso não exista).
         $idUsuario = is_numeric($_REQUEST['id']) ? $_REQUEST['id'] : 'NULL';
-        // Consultado usuÃ¡rio escolhido
+        // Consultado usuário escolhido
         $consulta = odbc_exec($db, 'SELECT idUsuario, loginUsuario, nomeUsuario, tipoPerfil, usuarioAtivo
                                     FROM   Usuario
                                     WHERE  idUsuario ='.$idUsuario);
-        // Criando um array com as informaÃ§Ãµes do usuÃ¡rio escolhido
+        // Criando um array com as informações do usuário escolhido
         $array_usuario = odbc_fetch_array($consulta);
         include('edit-user.tpl.php');
         break;
-      // MENSAGEM PADRÃƒO -------------------------------------------------------
+      // MENSAGEM PADRÃO -------------------------------------------------------
       // -----------------------------------------------------------------------
       default:
-        $msgUsuario = "A aÃ§Ã£o escolhida nÃ£o Ã© vÃ¡lida!";
+        $msgUsuario = "A ação escolhida não é válida!";
         include('../../dataBase/queries/query-full-user.php');
         include('list-user.tpl.php');
     } /* -- FIM DO SWITCH -- */
   }else{
-    // Tratando informaÃ§Ãµe do formulÃ¡rio para uma vareÃ¡vel
+    // Tratando informaçõe do formulário para uma vareável
     $padroes = "/[^a-zA-Z0-9 .]+/";
     $padraoSenha = "/[\"\';#]+/";
     $substituicao = "";
 
-    // CADASTRAR NOVO USUÃRIO --------------------------------------------------
+    // CADASTRAR NOVO USUÁRIO --------------------------------------------------
     // -------------------------------------------------------------------------
   	if(isset($_POST['btnNovoUsuario'])){
       $inputNome      = preg_replace($padroes, $substituicao, $_POST['inputNome']);
       $inputSenha     = preg_replace($padraoSenha, $substituicao, $_POST['inputSenha']);
       $inputPerfil    = $_POST['inputPerfil'] != 'A' && $_POST['inputPerfil'] != 'C' ? 'C' :	$_POST['inputPerfil'];
-      $inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativaÃ§Ã£o
+      $inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativação
 
       $email_exploded =	explode('@',$_POST['inputLogin']);
       $email_comeco   = preg_replace($padroes, $substituicao, $email_exploded[0]);
@@ -63,18 +63,18 @@
   							         VALUES
   								      ('$inputLogin', HASHBYTES('SHA1','$inputSenha'),
   								       '$inputNome', '$inputPerfil', $inputAtivo)")){
-  			$msgUsuario = "UsuÃ¡rio $inputNome cadastrado com sucesso!";
+  			$msgUsuario = "Usuário $inputNome cadastrado com sucesso!";
   		}else{
-  			$msgUsuario = "Erro ao cadastrar usuÃ¡rio!";
+  			$msgUsuario = "Erro ao cadastrar usuário!";
   		}
   	}
-    // ATUALIZAR USUÃRIO -------------------------------------------------------
+    // ATUALIZAR USUÁRIO -------------------------------------------------------
     // -------------------------------------------------------------------------
     if(isset($_POST['btnGravarUsuario'])){
       $inputNome      = preg_replace($padroes, $substituicao, $_POST['inputNome']);
       $inputSenha     = preg_replace($padraoSenha, $substituicao, $_POST['inputSenha']);
       $inputPerfil    = $_POST['inputPerfil'] != 'A' && $_POST['inputPerfil'] != 'C' ? 'C' :	$_POST['inputPerfil'];
-      $inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativaÃ§Ã£o
+      $inputAtivo     = !isset($_POST['inputAtivo']) ? 0 : 1; //Pega a ativação
 
       $email_exploded =	explode('@',$_POST['inputLogin']);
       $email_comeco   = preg_replace($padroes, $substituicao, $email_exploded[0]);
@@ -90,13 +90,13 @@
                                  tipoPerfil   = '$inputPerfil',
                                  usuarioAtivo = $inputAtivo
                           WHERE  idUsuario    = $idUsuario")){
-        $msgUsuario = "UsuÃ¡rio $inputNome editado com sucesso!";
+        $msgUsuario = "Usuário $inputNome editado com sucesso!";
       }else{
-          $erro = "Erro ao gravar atualizaÃ§Ã£o da usuÃ¡rio!";
+          $erro = "Erro ao gravar atualização da usuário!";
         }
       }
 
-    // Listando as Categorias na pÃ¡gina. ---------------------------------------
+    // Listando as Categorias na página. ---------------------------------------
     // -------------------------------------------------------------------------
     include('../../dataBase/queries/query-full-user.php');
     include('list-user.tpl.php');

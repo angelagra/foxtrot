@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../../styles/form.css">
 <?php include ('../default-page/index.body.php'); ?>
 
-<!-- FORMULÃRIOS PARA O SUBMENU -->
+<!-- FORMULÁRIOS PARA O SUBMENU -->
 <section class="page-submenu page-information">
   <div class="box-info">
     <h1>Nova Categoria</h1>
@@ -15,7 +15,7 @@
   </div>
  </section>
 
-<!-- FormulÃ¡rio para cadastro de uma nova categoria -->
+<!-- Formulário para cadastro de uma nova categoria -->
 <form method="post" action="../category/" name="form">
   <div class="form-box">
     <!-- Campo para adicionar o nome da Categoria -->
@@ -23,12 +23,12 @@
       <label class="label-box">Categoria:</label>
       <input type="text" name="inputCategoria" placeholder="Nome da categoria (50 Caracteres)">
     </div>
-    <!-- Campo para adicionar uma breve descriÃ§Ã£o da categoria -->
+    <!-- Campo para adicionar uma breve descrição da categoria -->
     <div class="campo">
-      <label class="label-box">DescriÃ§Ã£o:</label>
-      <textarea name="inputDescricao" rows="10" style="width: 30%" placeholder="Digite uma breve descriÃ§Ã£o sobre a categoria (100 Caracteres)"></textarea>
+      <label class="label-box">Descrição:</label>
+      <textarea name="inputDescricao" rows="10" style="width: 30%" placeholder="Digite uma breve descrição sobre a categoria (100 Caracteres)"></textarea>
     </div>
-    <!-- BotÃ£o para validar os campos acima no banco de dados -->
+    <!-- Botão para validar os campos acima no banco de dados -->
     <div class="campo">
       <button type="submit" name="bntSalvar">Salvar</button>
     </div>
